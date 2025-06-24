@@ -1,0 +1,23 @@
+body {
+  background-color: #000;
+  color: #fff;
+}
+
+/* CSSTransition */
+.fade-enter {
+  opacity: 0.5;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0.5;
+  transition: opacity 1000ms;
+}
