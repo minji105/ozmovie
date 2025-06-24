@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useScroll from '@/hooks/useScroll';
+import { SearchIcon } from '@/components/Icons';
 
 export default function NavBar() {
   const isScrolled = useScroll();
@@ -36,7 +37,7 @@ export default function NavBar() {
             onClick={() => setIsInputVisible(!isInputVisible)}
             className={`text-xl text-white ${isInputVisible ? 'hidden' : ''}`}
           >
-            검색
+            <SearchIcon />
           </button>
         </div>
 
