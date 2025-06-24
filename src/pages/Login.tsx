@@ -7,6 +7,8 @@ import type { LoginSchemaType } from '@/lib/validationSchemas';
 import LOGIN_FIELDS from '@/constants/loginFields';
 import AuthLayout from '@/components/AuthLayout';
 import Input from '@/components/Input';
+import Button from '@/components/common/Button';
+import { GoogleIcon, KakaoIcon } from '@/components/Icons';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -38,7 +40,21 @@ export default function Login() {
     } catch (error) {
       console.error(error);
     } finally {
-      console.log('로그인 시도 값:', data.email, data.password);
+      console.log('로그인 시도 값:', data.email);
+    }
+  };
+
+  const handleOAuthLogin = async (provider: 'kakao' | 'google') => {
+    try {
+      await supabase.auth.signInWithOAuth({
+        provider,
+        options: {
+          redirectTo: window.location.origin,
+        },
+      });
+    } catch (error: any) {
+      alert(`[${provider} 로그인 실패]: ${error?.message || error}`);
+      console.error(error);
     }
   };
 
@@ -69,6 +85,24 @@ export default function Login() {
         >
           로그인
         </button>
+
+        <Button
+          type="button"
+          variant="google"
+          onClick={() => handleOAuthLogin('google')}
+        >
+          <GoogleIcon />
+          <p>Continue with Google</p>
+        </Button>
+
+        <Button
+          type="button"
+          variant="kakao"
+          onClick={() => handleOAuthLogin('kakao')}
+        >
+          <KakaoIcon />
+          <p>Continue with Kakao</p>
+        </Button>
 
         <div className="text-base">
           <span className="text-gray-300">
