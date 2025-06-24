@@ -5,6 +5,7 @@ import supabase from '../supabaseClient';
 import { loginSchema } from '@/lib/validationSchemas';
 import type { LoginSchemaType } from '@/lib/validationSchemas';
 import LOGIN_FIELDS from '@/constants/loginFields';
+import useOAuthLogin from '@/hooks/useOAuthLogin';
 import AuthLayout from '@/components/AuthLayout';
 import Input from '@/components/Input';
 import Button from '@/components/common/Button';
@@ -44,19 +45,7 @@ export default function Login() {
     }
   };
 
-  const handleOAuthLogin = async (provider: 'kakao' | 'google') => {
-    try {
-      await supabase.auth.signInWithOAuth({
-        provider,
-        options: {
-          redirectTo: window.location.origin,
-        },
-      });
-    } catch (error: any) {
-      alert(`[${provider} 로그인 실패]: ${error?.message || error}`);
-      console.error(error);
-    }
-  };
+  const handleOAuthLogin = useOAuthLogin();
 
   return (
     <AuthLayout>
