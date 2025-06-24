@@ -4,6 +4,7 @@ import { BASE_URL_ORIGIN } from '@constants/index';
 import useFetch from '@hooks/useFetch';
 import useAutoRotation from '@hooks/useAutoRotation';
 import SkeletonBanner from '@components/skeletons/SkeletonBanner';
+import Button from '@components/common/Button';
 
 interface MediaItem {
   id: number;
@@ -85,19 +86,9 @@ export default function Banner() {
               ? media.overview.split('. ').slice(0, 3).join('. ') + '...'
               : media.overview}
           </p>
-          <div>
-            <button
-              className="mr-4 py-[1.3vw] px-[2.6vw] rounded-lg bg-white text-[calc(1vw+6px)] text-black transition-all duration-[3000]
-                              hover:text-white hover:bg-blue-600"
-            >
-              ▶&nbsp;&nbsp;재생
-            </button>
-            <button
-              className="py-[1.3vw] px-[2.6vw] rounded-lg bg-[#c0c0c070] text-[calc(1vw+6px)] transition-all duration-[3000]
-                              hover:bg-[#c0c0c0a7]"
-            >
-              ⓘ&nbsp;&nbsp;상세 정보
-            </button>
+          <div className="flex gap-4">
+            <Button variant="play">▶&nbsp;&nbsp;재생</Button>
+            <Button variant="info">ⓘ&nbsp;&nbsp;상세 정보</Button>
           </div>
         </div>
       </div>
