@@ -28,12 +28,13 @@ export default function Login() {
         email,
         password,
       });
+
       if (error) {
         alert('[로그인 실패] ' + error.message);
-        return;
+      } else {
+        console.log('login success: ', data);
+        navigate('/');
       }
-
-      navigate('/');
     } catch (error) {
       console.error(error);
     } finally {
