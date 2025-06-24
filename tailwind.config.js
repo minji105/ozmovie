@@ -4,7 +4,14 @@ export default {
     './index.html',
     './src/**/*.{js,jsx,ts,tsx}',],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        red: { primary: "#df0000", hover: "#bd0101" },
+      },
+      backgroundImage: {
+        auth: "url(src/assets/bg.png)",
+      },
+    },
   },
   plugins: [],
 }
