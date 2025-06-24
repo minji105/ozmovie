@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { API_KEY } from '@constants';
+import { API_KEY } from '@constants/index';
 
 export default function useFetch<T>(query: string) {
   const [data, setData] = useState<T | null>(null);
