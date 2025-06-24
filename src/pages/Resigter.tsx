@@ -5,8 +5,11 @@ import supabase from '../supabaseClient';
 import { registerSchema } from '@/lib/validationSchemas';
 import type { RegisterSchemaType } from '@/lib/validationSchemas';
 import REGISTER_FIELDS from '@/constants/registerFields';
+import useOAuthLogin from '@/hooks/useOAuthLogin';
 import AuthLayout from '@/components/AuthLayout';
 import Input from '@/components/Input';
+import Button from '@/components/common/Button';
+import { GoogleIcon, KakaoIcon } from '@/components/Icons';
 
 export default function Register() {
   const navigate = useNavigate();
@@ -46,6 +49,8 @@ export default function Register() {
     }
   };
 
+  const handleOAuthLogin = useOAuthLogin();
+
   return (
     <AuthLayout>
       <form
@@ -73,6 +78,26 @@ export default function Register() {
         >
           가입하기
         </button>
+
+        <p className="my-2 text-center text-sm text-gray-300">OR</p>
+
+        <Button
+          type="button"
+          variant="google"
+          onClick={() => handleOAuthLogin('google')}
+        >
+          <GoogleIcon />
+          <p>Continue with Google</p>
+        </Button>
+
+        <Button
+          type="button"
+          variant="kakao"
+          onClick={() => handleOAuthLogin('kakao')}
+        >
+          <KakaoIcon />
+          <p>Continue with Kakao</p>
+        </Button>
       </form>
     </AuthLayout>
   );
