@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { BASE_URL_ORIGIN } from '@constants/index';
-import useFetch from '@/hooks/useFetch';
-import useAutoRotation from '@/hooks/useAutoRotation';
+import useFetch from '@hooks/useFetch';
+import useAutoRotation from '@hooks/useAutoRotation';
 import SkeletonBanner from '@components/skeletons/SkeletonBanner';
 
 interface MediaItem {
