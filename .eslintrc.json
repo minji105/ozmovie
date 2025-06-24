@@ -6,25 +6,29 @@
     "node": true,
     "es2021": true
   },
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 12,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
-    }
+    },
+    "project": "./tsconfig.json"
   },
   "rules": {
     "prettier/prettier": ["error"],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": [
+      1,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ],
     "react/react-in-jsx-scope": "off",
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error"
   },
   "settings": {
     "import/resolver": {
-      "alias": {
-        "map": [["@", "./src"]],
-        "extensions": [".js", ".jsx"]
+      "typescript": {
+        "project": "./tsconfig.json"
       }
     }
   }
