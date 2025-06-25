@@ -1,16 +1,20 @@
 import { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { IoSearchSharp } from 'react-icons/io5';
 import useScroll from '@/hooks/useScroll';
+import useSearchRouting from '@/hooks/useSearchRouting';
 import { useAuth } from '@/contexts/AuthContext';
-import UserIcon from './UserIcon';
+import UserIcon from '@/components/UserIcon';
 
 export default function NavBar() {
-  const isScrolled = useScroll();
   const [isInputVisible, setIsInputVisible] = useState<boolean>(false);
+  const location = useLocation();
   const inputRef = useRef<HTMLInputElement>(null);
 
   const { user } = useAuth();
+
+  const { inputDebounce, setInputDebounce } = useSearchRouting();
+  const isScrolled = useScroll();
 
   useEffect(() => {
     if (isInputVisible && inputRef.current) {
@@ -22,7 +26,7 @@ export default function NavBar() {
     <div
       className={`fixed z-[100] flex w-full items-center justify-between px-[5vw] py-4 transition-all duration-500 ${isScrolled ? 'bg-black' : 'bg-transparent'}`}
     >
-      <Link to="/">
+      <Link to="/" onClick={() => setInputDebounce('')}>
         <h1 className="text-xl font-black text-red-primary md:hidden">OZ</h1>
         <h1 className="hidden text-2xl font-black text-red-primary md:block">
           OZMOVIE
@@ -34,8 +38,10 @@ export default function NavBar() {
           <input
             ref={inputRef}
             type="text"
-            className={`transition-width border-b-2 bg-transparent text-white outline-none transition-[width] duration-300 ${isInputVisible ? 'w-[calc(150px+5vw)]' : 'w-0'}`}
+            value={inputDebounce}
+            className={`transition-width border-b-2 bg-transparent text-white outline-none transition-[width] duration-300 ${isInputVisible || location.pathname === '/search' ? 'w-[calc(150px+5vw)]' : 'w-0'}`}
             onBlur={() => setIsInputVisible(false)}
+            onChange={e => setInputDebounce(e.target.value)}
           />
           <button
             onClick={() => setIsInputVisible(!isInputVisible)}
