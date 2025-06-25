@@ -1,19 +1,19 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema } from '@/lib/validationSchemas';
 import type { LoginSchemaType } from '@/lib/validationSchemas';
+import useLogin from '@/hooks/auth/useLogin';
+import useOAuthLogin from '@/hooks/auth/useOAuthLogin';
 import LOGIN_FIELDS from '@/constants/loginFields';
-import useOAuthLogin from '@/hooks/useOAuthLogin';
-import { useAuth } from '@/contexts/AuthContext';
 import AuthLayout from '@/components/AuthLayout';
 import Input from '@/components/Input';
 import Button from '@/components/common/Button';
 import { GoogleIcon, KakaoIcon } from '@/components/Icons';
 
 export default function Login() {
-  const navigate = useNavigate();
-  const { signIn } = useAuth();
+  const handleLogin = useLogin();
+  const handleOAuthLogin = useOAuthLogin();
 
   const {
     register,
@@ -23,13 +23,6 @@ export default function Login() {
     resolver: zodResolver(loginSchema),
     mode: 'onChange',
   });
-
-  const handleLogin = async (data: LoginSchemaType) => {
-    const result = await signIn(data);
-    if (result) navigate('/');
-  };
-
-  const handleOAuthLogin = useOAuthLogin();
 
   return (
     <AuthLayout>

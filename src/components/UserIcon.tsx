@@ -1,9 +1,12 @@
 import { FaUserCircle } from 'react-icons/fa';
 import { useAuth } from '@/contexts/AuthContext';
+import useLogout from '@/hooks/auth/useLogout';
 
 export default function UserIcon() {
-  const { user, signOut } = useAuth();
+  const { user } = useAuth();
   const userIcon = user?.user_metadata.avatar_url;
+
+  const handleLogout = useLogout();
 
   return (
     <div className="group relative">
@@ -17,7 +20,11 @@ export default function UserIcon() {
 
       <div className="absolute right-0 top-0 hidden w-max group-hover:block">
         <div className="mt-10 bg-[#000000c1] p-4 text-sm">
-          <button type="button" className="hover:underline" onClick={signOut}>
+          <button
+            type="button"
+            className="hover:underline"
+            onClick={handleLogout}
+          >
             로그아웃
           </button>
         </div>
