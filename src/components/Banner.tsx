@@ -53,12 +53,13 @@ export default function Banner() {
           <p className="text-[5vw] font-black">{title}</p>
           <div className="text-[calc(1vw+4px)]">
             <span className="mr-12">
-              ★ {media.vote_average.toFixed(1)}&nbsp;&nbsp;|&nbsp;&nbsp;{' '}
+              ★ {media.vote_average.toFixed(1)}
+              <span className="mx-4">|</span>
               {media.vote_count}
             </span>
             <span className="text-gray-300">
               {originalTitle}
-              &nbsp;&nbsp;·&nbsp;&nbsp;
+              <span className="mx-4">·</span>
               {year}
             </span>
           </div>
@@ -66,8 +67,12 @@ export default function Banner() {
             {overview}
           </p>
           <div className="flex gap-4">
-            <Button variant="play">▶&nbsp;&nbsp;재생</Button>
-            <Button variant="info">ⓘ&nbsp;&nbsp;상세 정보</Button>
+            <Button variant="play">
+              <span className="mr-4">▶</span>재생
+            </Button>
+            <Button variant="info">
+              <span className="mr-4">ⓘ</span>상세 정보
+            </Button>
           </div>
         </div>
       </div>
