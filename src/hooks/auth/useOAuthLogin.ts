@@ -1,9 +1,8 @@
-import { useCallback } from 'react';
 import type { Provider } from '@supabase/supabase-js';
 import supabase from '@/supabaseClient';
 
 export default function useOAuthLogin() {
-  const handleOAuthLogin = useCallback(async (provider: Provider) => {
+  const handleOAuthLogin = async (provider: Provider) => {
     try {
       await supabase.auth.signInWithOAuth({
         provider,
@@ -15,7 +14,7 @@ export default function useOAuthLogin() {
       alert(`[${provider} 로그인 실패]: ${error?.message || error}`);
       console.error(error);
     }
-  }, []);
+  };
 
   return handleOAuthLogin;
 }

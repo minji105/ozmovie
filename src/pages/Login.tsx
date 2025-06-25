@@ -1,18 +1,19 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import supabase from '../supabaseClient';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema } from '@/lib/validationSchemas';
 import type { LoginSchemaType } from '@/lib/validationSchemas';
+import useLogin from '@/hooks/auth/useLogin';
+import useOAuthLogin from '@/hooks/auth/useOAuthLogin';
 import LOGIN_FIELDS from '@/constants/loginFields';
-import useOAuthLogin from '@/hooks/useOAuthLogin';
 import AuthLayout from '@/components/AuthLayout';
 import Input from '@/components/Input';
 import Button from '@/components/common/Button';
 import { GoogleIcon, KakaoIcon } from '@/components/Icons';
 
 export default function Login() {
-  const navigate = useNavigate();
+  const handleLogin = useLogin();
+  const handleOAuthLogin = useOAuthLogin();
 
   const {
     register,
@@ -22,30 +23,6 @@ export default function Login() {
     resolver: zodResolver(loginSchema),
     mode: 'onChange',
   });
-
-  const handleLogin = async (data: LoginSchemaType) => {
-    try {
-      const { email, password } = data;
-
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      if (error) {
-        alert('[로그인 실패] ' + error.message);
-      } else {
-        console.log('login success: ', data);
-        navigate('/');
-      }
-    } catch (error) {
-      console.error(error);
-    } finally {
-      console.log('로그인 시도 값:', data.email);
-    }
-  };
-
-  const handleOAuthLogin = useOAuthLogin();
 
   return (
     <AuthLayout>
@@ -70,7 +47,7 @@ export default function Login() {
 
         <button
           type="submit"
-          className="bg-red-primary hover:bg-red-hover w-full rounded-md px-6 py-2 text-lg text-white"
+          className="w-full rounded-md bg-red-primary px-6 py-2 text-lg text-white hover:bg-red-hover"
         >
           로그인
         </button>

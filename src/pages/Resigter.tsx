@@ -1,18 +1,18 @@
-import { useNavigate } from 'react-router-dom';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import supabase from '../supabaseClient';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { registerSchema } from '@/lib/validationSchemas';
 import type { RegisterSchemaType } from '@/lib/validationSchemas';
+import useRegister from '@/hooks/auth/useRegister';
+import useOAuthLogin from '@/hooks/auth/useOAuthLogin';
 import REGISTER_FIELDS from '@/constants/registerFields';
-import useOAuthLogin from '@/hooks/useOAuthLogin';
 import AuthLayout from '@/components/AuthLayout';
 import Input from '@/components/Input';
 import Button from '@/components/common/Button';
 import { GoogleIcon, KakaoIcon } from '@/components/Icons';
 
 export default function Register() {
-  const navigate = useNavigate();
+  const handleRegister = useRegister();
+  const handleOAuthLogin = useOAuthLogin();
 
   const {
     register,
@@ -22,34 +22,6 @@ export default function Register() {
     resolver: zodResolver(registerSchema),
     mode: 'onChange',
   });
-
-  const handleRegister = async (data: RegisterSchemaType) => {
-    const { email, name, password } = data;
-
-    try {
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: { name },
-        },
-      });
-      console.log('register success: ', data);
-
-      if (error) {
-        alert('[회원가입 실패] ' + error.message);
-      } else {
-        alert('회원가입 완료');
-        navigate('/login');
-      }
-    } catch (error) {
-      console.error(error);
-    } finally {
-      console.log('회원가입 시도 값:', data.email, data.name, data.password);
-    }
-  };
-
-  const handleOAuthLogin = useOAuthLogin();
 
   return (
     <AuthLayout>
@@ -74,7 +46,7 @@ export default function Register() {
 
         <button
           type="submit"
-          className="bg-red-primary hover:bg-red-hover w-full rounded-md px-6 py-2 text-lg text-white"
+          className="w-full rounded-md bg-red-primary px-6 py-2 text-lg text-white hover:bg-red-hover"
         >
           가입하기
         </button>
