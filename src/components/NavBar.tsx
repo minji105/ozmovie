@@ -26,7 +26,7 @@ export default function NavBar() {
     <div
       className={`fixed z-[100] flex w-full items-center justify-between px-[5vw] py-4 transition-all duration-500 ${isScrolled ? 'bg-black' : 'bg-transparent'}`}
     >
-      <Link to="/">
+      <Link to="/" onClick={() => setInputDebounce('')}>
         <h1 className="text-xl font-black text-red-primary md:hidden">OZ</h1>
         <h1 className="hidden text-2xl font-black text-red-primary md:block">
           OZMOVIE
