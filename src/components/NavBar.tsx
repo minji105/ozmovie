@@ -1,14 +1,20 @@
 import { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { IoSearchSharp } from 'react-icons/io5';
 import useScroll from '@/hooks/useScroll';
+import useDebounce from '@/hooks/useDebounce';
 import { useAuth } from '@/contexts/AuthContext';
-import UserIcon from './UserIcon';
+import UserIcon from '@/components/UserIcon';
 
 export default function NavBar() {
   const isScrolled = useScroll();
   const [isInputVisible, setIsInputVisible] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const [inputDebounce, setInputDebounce] = useState<string>('');
+  const debouncedValue = useDebounce(inputDebounce);
+  const navigate = useNavigate();
 
   const { user } = useAuth();
 
@@ -17,6 +23,13 @@ export default function NavBar() {
       inputRef.current.focus();
     }
   }, [isInputVisible]);
+
+  useEffect(() => {
+    if (debouncedValue.trim()) {
+      navigate(`/search?keyword=${debouncedValue}`);
+      console.log('keyword: ', debouncedValue);
+    } else navigate('/');
+  }, [debouncedValue]);
 
   return (
     <div
@@ -34,8 +47,9 @@ export default function NavBar() {
           <input
             ref={inputRef}
             type="text"
-            className={`transition-width border-b-2 bg-transparent text-white outline-none transition-[width] duration-300 ${isInputVisible ? 'w-[calc(150px+5vw)]' : 'w-0'}`}
+            className={`transition-width border-b-2 bg-transparent text-white outline-none transition-[width] duration-300 ${isInputVisible || location.pathname === '/search' ? 'w-[calc(150px+5vw)]' : 'w-0'}`}
             onBlur={() => setIsInputVisible(false)}
+            onChange={e => setInputDebounce(e.target.value)}
           />
           <button
             onClick={() => setIsInputVisible(!isInputVisible)}
