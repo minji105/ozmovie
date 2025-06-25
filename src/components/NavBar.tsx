@@ -1,12 +1,16 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { IoSearchSharp } from 'react-icons/io5';
 import useScroll from '@/hooks/useScroll';
-import { SearchIcon } from '@/components/Icons';
+import { useAuth } from '@/contexts/AuthContext';
+import UserIcon from './UserIcon';
 
 export default function NavBar() {
   const isScrolled = useScroll();
   const [isInputVisible, setIsInputVisible] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const { user } = useAuth();
 
   useEffect(() => {
     if (isInputVisible && inputRef.current) {
@@ -19,8 +23,8 @@ export default function NavBar() {
       className={`fixed z-[100] flex w-full items-center justify-between px-[5vw] py-4 transition-all duration-500 ${isScrolled ? 'bg-black' : 'bg-transparent'}`}
     >
       <Link to="/">
-        <h1 className="text-red-primary text-xl font-black md:hidden">OZ</h1>
-        <h1 className="text-red-primary hidden text-2xl font-black md:block">
+        <h1 className="text-xl font-black text-red-primary md:hidden">OZ</h1>
+        <h1 className="hidden text-2xl font-black text-red-primary md:block">
           OZMOVIE
         </h1>
       </Link>
@@ -37,13 +41,17 @@ export default function NavBar() {
             onClick={() => setIsInputVisible(!isInputVisible)}
             className={`text-xl text-white ${isInputVisible ? 'hidden' : ''}`}
           >
-            <SearchIcon />
+            <IoSearchSharp className="text-2xl" />
           </button>
         </div>
 
-        <Link to="/login">
-          <button className="mr-2">로그인</button>
-        </Link>
+        {user ? (
+          <UserIcon />
+        ) : (
+          <Link to="/login">
+            <button className="mr-2">로그인</button>
+          </Link>
+        )}
       </div>
     </div>
   );
