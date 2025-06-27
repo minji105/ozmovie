@@ -42,7 +42,7 @@ export default function Sliders() {
   ];
 
   return (
-    <div className="w-full px-[5vw]">
+    <div className="w-full">
       {sliders.map(
         (slider, idx) =>
           !slider.loading && (
