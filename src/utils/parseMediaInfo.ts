@@ -1,10 +1,10 @@
-export function parseMediaInfo(media: any) {
+export function parseMediaInfo(media: any, media_type: string) {
   const title = media.title || media.name;
 
   const originalTitle = media.original_title || media.original_name;
 
   const year =
-    media.media_type === 'tv'
+    media_type === 'tv'
       ? media.first_air_date?.split('-')[0]
       : media.release_date?.split('-')[0];
 
