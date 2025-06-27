@@ -8,11 +8,7 @@ interface SliderSectionProps {
   type: string;
 }
 
-export default function SliderSection({
-  data,
-  title,
-  type,
-}: SliderSectionProps) {
+export default function SliderSection({ data, title }: SliderSectionProps) {
   const [currentPage, setCurrentPage] = useState(0);
   const [cardsPerPage, setCardsPerPage] = useState(7);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -39,25 +35,12 @@ export default function SliderSection({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const slideTo = (page: number) => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const containerWidth = container.offsetWidth;
-    const cardWidth = containerWidth / data.length;
-
-    const moveX = cardWidth * cardsPerPage * page;
-    container.style.transform = `translateX(-${moveX}px)`;
-
-    setCurrentPage(page);
-  };
-
   const handleNext = () => {
-    if (currentPage < totalPages - 1) slideTo(currentPage + 1);
+    if (currentPage < totalPages - 1) setCurrentPage(prev => prev + 1);
   };
 
   const handlePrev = () => {
-    if (currentPage > 0) slideTo(currentPage - 1);
+    if (currentPage > 0) setCurrentPage(prev => prev - 1);
   };
 
   return (
@@ -68,6 +51,7 @@ export default function SliderSection({
         className="ease flex transition-transform duration-1000"
         ref={containerRef}
         style={{
+          transform: `translateX(-${(100 / totalPages) * currentPage}%)`,
           width: `${(data.length / cardsPerPage) * 100}%`,
         }}
       >
