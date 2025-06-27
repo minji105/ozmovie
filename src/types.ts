@@ -1,3 +1,8 @@
+export interface Genre {
+  id: number;
+  name: string;
+}
+
 export interface MediaItem {
   id: number;
   media_type: 'tv' | 'movie' | string;
@@ -12,4 +17,6 @@ export interface MediaItem {
   first_air_date: string;
   release_date: string;
   overview: string;
+  tagline: string;
+  genres: Genre[];
 }
