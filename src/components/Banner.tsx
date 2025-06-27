@@ -40,7 +40,7 @@ export default function Banner() {
       nodeRef={nodeRef}
     >
       <div ref={nodeRef} className="banner-responsive relative">
-        <div className="banner-responsive fixed z-0 w-full">
+        <div className="banner-responsive w-full">
           <img
             className="banner-responsive w-full object-cover"
             src={`${BASE_URL_ORIGIN}${media.backdrop_path}`}
