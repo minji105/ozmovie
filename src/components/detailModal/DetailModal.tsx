@@ -1,23 +1,30 @@
+import { useEffect } from 'react';
 import { IoMdCloseCircle } from 'react-icons/io';
 import type { MediaItem } from '@/types';
 import useFetch from '@/hooks/useFetch';
 import { BASE_URL_ORIGIN } from '@/constants';
 import { parseMediaInfo } from '@/utils/parseMediaInfo';
-import Button from './common/Button';
-import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import Button from '@/components/common/Button';
+import Recommendation from '@/components/detailModal/Recommendation';
 
 interface Props {
   type: string;
   id: string;
+  onClose: () => void;
 }
 
-export default function DetailModal({ type, id }: Props) {
-  const navigate = useNavigate();
-  const location = useLocation();
+interface RecommendationsResponse {
+  results: MediaItem[];
+}
 
+export default function DetailModal({ type, id, onClose }: Props) {
   const { data, loading } = useFetch<MediaItem>(`${type}/${id}?language=ko`);
-  console.log('media: ', data);
+
+  const { data: recommendationData } = useFetch<RecommendationsResponse>(
+    `${type}/${id}/recommendations?language=ko`,
+  );
+
+  console.log(recommendationData);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -34,7 +41,7 @@ export default function DetailModal({ type, id }: Props) {
     // 모달 배경
     <div className="fixed left-0 top-0 z-[1000] h-full w-full overflow-y-scroll bg-black/80 px-5 py-10">
       {/* 모달 */}
-      <div className="relative m-auto max-w-4xl overflow-hidden rounded-md bg-stone-900 pb-[100px]">
+      <div className="relative m-auto max-w-4xl overflow-hidden rounded-md bg-stone-900 pb-5">
         {/* 상단 백드랍 이미지 및 제목, 닫기 버튼 */}
         <div className="relative h-[440px] w-full">
           <img
@@ -54,32 +61,38 @@ export default function DetailModal({ type, id }: Props) {
 
           <button
             className="path-white absolute right-10 top-10 text-4xl"
-            onClick={() => navigate(location.pathname)}
+            onClick={onClose}
           >
             <IoMdCloseCircle />
           </button>
         </div>
 
-        {/* 정보 */}
-        <div className="flex flex-col gap-2 px-10 pt-2">
-          <p className="text-gray-200">
-            {year}
-            <span className="mx-4">·</span>
-            {runtimeOrSeasons}
-          </p>
-          <div className="mb-6 flex items-center gap-2">
-            <p>장르:</p>
-            {data.genres.map(tag => (
-              <p
-                key={tag.id}
-                className="rounded-md bg-stone-700 px-2 py-1 text-sm"
-              >
-                {tag.name}
-              </p>
-            ))}
+        {/* 본문 */}
+        <div className="flex flex-col gap-6 px-10 pt-2">
+          <div className="flex flex-col gap-2">
+            <p className="text-gray-200">
+              {year}
+              <span className="mx-2">·</span>
+              {runtimeOrSeasons}
+            </p>
+            <div className="mb-5 flex items-center gap-2">
+              <p>장르:</p>
+              {data.genres.map(tag => (
+                <p
+                  key={tag.id}
+                  className="rounded-md bg-stone-700 px-2 py-1 text-sm"
+                >
+                  {tag.name}
+                </p>
+              ))}
+            </div>
+            {data.tagline && <p className="text-lg italic">"{data.tagline}"</p>}
+            <p>{data.overview}</p>
           </div>
-          {data.tagline && <p className="text-lg italic">"{data.tagline}"</p>}
-          <p>{data.overview}</p>
+
+          {recommendationData?.results?.length ? (
+            <Recommendation data={recommendationData} />
+          ) : null}
         </div>
       </div>
     </div>
