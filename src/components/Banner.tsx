@@ -75,7 +75,7 @@ export default function Banner() {
             <Button variant="play">
               <span className="mr-4">▶</span>재생
             </Button>
-            <Link to={`/detail/${media.media_type}/${media.id}`}>
+            <Link to={`?type=${media.media_type}&id=${media.id}`}>
               <Button variant="info">
                 <span className="mr-4">ⓘ</span>상세 정보
               </Button>
