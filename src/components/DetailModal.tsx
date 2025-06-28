@@ -1,16 +1,21 @@
+import { IoMdCloseCircle } from 'react-icons/io';
 import type { MediaItem } from '@/types';
 import useFetch from '@/hooks/useFetch';
 import { BASE_URL_ORIGIN } from '@/constants';
 import { parseMediaInfo } from '@/utils/parseMediaInfo';
 import Button from './common/Button';
 import { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface Props {
   type: string;
-  id: number;
+  id: string;
 }
 
 export default function DetailModal({ type, id }: Props) {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const { data, loading } = useFetch<MediaItem>(`${type}/${id}?language=ko`);
   console.log('media: ', data);
 
@@ -30,7 +35,7 @@ export default function DetailModal({ type, id }: Props) {
     <div className="fixed left-0 top-0 z-[1000] h-full w-full overflow-y-scroll bg-black/80 py-10">
       {/* 모달 */}
       <div className="relative m-auto max-w-4xl overflow-hidden rounded-md bg-stone-900 pb-[100px]">
-        {/* 상단 백드랍 이미지 및 제목 */}
+        {/* 상단 백드랍 이미지 및 제목, 닫기 버튼 */}
         <div className="relative h-[440px] w-full">
           <img
             src={`${BASE_URL_ORIGIN}${data.backdrop_path}`}
@@ -46,6 +51,13 @@ export default function DetailModal({ type, id }: Props) {
               <span className="mr-4">▶</span>재생
             </Button>
           </div>
+
+          <button
+            className="path-white absolute right-10 top-10 text-4xl"
+            onClick={() => navigate(location.pathname)}
+          >
+            <IoMdCloseCircle />
+          </button>
         </div>
 
         {/* 정보 */}
@@ -55,7 +67,7 @@ export default function DetailModal({ type, id }: Props) {
             <span className="mx-4">·</span>
             {runtimeOrSeasons}
           </p>
-          <div className="flex items-center gap-2">
+          <div className="mb-6 flex items-center gap-2">
             <p>장르:</p>
             {data.genres.map(tag => (
               <p
@@ -66,7 +78,7 @@ export default function DetailModal({ type, id }: Props) {
               </p>
             ))}
           </div>
-          <p className="mt-6 text-lg italic">"{data.tagline}"</p>
+          {data.tagline && <p className="text-lg italic">"{data.tagline}"</p>}
           <p>{data.overview}</p>
         </div>
       </div>
