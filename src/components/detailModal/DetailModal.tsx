@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { IoMdCloseCircle } from 'react-icons/io';
 import type { MediaItem } from '@/types';
 import useFetch from '@/hooks/useFetch';
@@ -11,12 +10,10 @@ import Recommandation from '@/components/detailModal/Recommandation';
 interface Props {
   type: string;
   id: string;
+  onClose: () => void;
 }
 
-export default function DetailModal({ type, id }: Props) {
-  const navigate = useNavigate();
-  const location = useLocation();
-
+export default function DetailModal({ type, id, onClose }: Props) {
   const { data, loading } = useFetch<MediaItem>(`${type}/${id}?language=ko`);
   const { data: recommandationData } = useFetch<MediaItem>(
     `${type}/${id}/recommendations?language=ko`,
@@ -57,7 +54,7 @@ export default function DetailModal({ type, id }: Props) {
 
           <button
             className="path-white absolute right-10 top-10 text-4xl"
-            onClick={() => navigate(location.pathname)}
+            onClick={onClose}
           >
             <IoMdCloseCircle />
           </button>
