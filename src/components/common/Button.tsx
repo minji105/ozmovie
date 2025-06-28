@@ -3,7 +3,7 @@ import { clsx } from 'clsx';
 import type { ButtonHTMLAttributes } from 'react';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'play' | 'info' | 'google' | 'kakao' | 'primary';
+  variant?: 'play' | 'playSmall' | 'info' | 'google' | 'kakao' | 'primary';
   className?: string;
   children: React.ReactNode;
 }
