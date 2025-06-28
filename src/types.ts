@@ -19,4 +19,6 @@ export interface MediaItem {
   overview: string;
   tagline: string;
   genres: Genre[];
+  runtime: string;
+  number_of_seasons: string;
 }
