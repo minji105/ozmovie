@@ -5,7 +5,7 @@ import useFetch from '@/hooks/useFetch';
 import { BASE_URL_ORIGIN } from '@/constants';
 import { parseMediaInfo } from '@/utils/parseMediaInfo';
 import Button from '@/components/common/Button';
-import Recommandation from '@/components/detailModal/Recommandation';
+import Recommendation from '@/components/detailModal/Recommendation';
 
 interface Props {
   type: string;
@@ -20,11 +20,11 @@ interface RecommendationsResponse {
 export default function DetailModal({ type, id, onClose }: Props) {
   const { data, loading } = useFetch<MediaItem>(`${type}/${id}?language=ko`);
 
-  const { data: recommandationData } = useFetch<RecommendationsResponse>(
+  const { data: recommendationData } = useFetch<RecommendationsResponse>(
     `${type}/${id}/recommendations?language=ko`,
   );
 
-  console.log(recommandationData);
+  console.log(recommendationData);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -90,8 +90,8 @@ export default function DetailModal({ type, id, onClose }: Props) {
             <p>{data.overview}</p>
           </div>
 
-          {recommandationData?.results?.length ? (
-            <Recommandation data={recommandationData} />
+          {recommendationData?.results?.length ? (
+            <Recommendation data={recommendationData} />
           ) : null}
         </div>
       </div>
