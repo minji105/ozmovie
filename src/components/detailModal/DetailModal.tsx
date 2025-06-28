@@ -13,11 +13,18 @@ interface Props {
   onClose: () => void;
 }
 
+interface RecommendationsResponse {
+  results: MediaItem[];
+}
+
 export default function DetailModal({ type, id, onClose }: Props) {
   const { data, loading } = useFetch<MediaItem>(`${type}/${id}?language=ko`);
-  const { data: recommandationData } = useFetch<MediaItem>(
+
+  const { data: recommandationData } = useFetch<RecommendationsResponse>(
     `${type}/${id}/recommendations?language=ko`,
   );
+
+  console.log(recommandationData);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -34,7 +41,7 @@ export default function DetailModal({ type, id, onClose }: Props) {
     // 모달 배경
     <div className="fixed left-0 top-0 z-[1000] h-full w-full overflow-y-scroll bg-black/80 px-5 py-10">
       {/* 모달 */}
-      <div className="relative m-auto max-w-4xl overflow-hidden rounded-md bg-stone-900 pb-[100px]">
+      <div className="relative m-auto max-w-4xl overflow-hidden rounded-md bg-stone-900 pb-5">
         {/* 상단 백드랍 이미지 및 제목, 닫기 버튼 */}
         <div className="relative h-[440px] w-full">
           <img
@@ -83,7 +90,9 @@ export default function DetailModal({ type, id, onClose }: Props) {
             <p>{data.overview}</p>
           </div>
 
-          <Recommandation data={recommandationData} />
+          {recommandationData?.results?.length ? (
+            <Recommandation data={recommandationData} />
+          ) : null}
         </div>
       </div>
     </div>
