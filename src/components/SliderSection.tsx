@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import type { MediaItem } from '@/types';
 import useResizeSlider from '@/hooks/useResizeSlider';
 import MediaCard from '@/components/MediaCard';
@@ -9,7 +10,11 @@ interface SliderSectionProps {
   type: string;
 }
 
-export default function SliderSection({ data, title }: SliderSectionProps) {
+export default function SliderSection({
+  data,
+  title,
+  type,
+}: SliderSectionProps) {
   const { currentPage, setCurrentPage, cardsPerPage } = useResizeSlider();
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -44,7 +49,9 @@ export default function SliderSection({ data, title }: SliderSectionProps) {
               padding: '4px',
             }}
           >
-            <MediaCard title={el.title || ''} imgSrc={el.poster_path} />
+            <Link to={`?type=${type}&id=${el.id}`}>
+              <MediaCard title={el.title || ''} imgSrc={el.poster_path} />
+            </Link>
           </div>
         ))}
       </div>
