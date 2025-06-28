@@ -6,6 +6,7 @@ import useFetch from '@/hooks/useFetch';
 import { BASE_URL_ORIGIN } from '@/constants';
 import { parseMediaInfo } from '@/utils/parseMediaInfo';
 import Button from '@/components/common/Button';
+import Recommandation from '@/components/detailModal/Recommandation';
 
 interface Props {
   type: string;
@@ -17,7 +18,9 @@ export default function DetailModal({ type, id }: Props) {
   const location = useLocation();
 
   const { data, loading } = useFetch<MediaItem>(`${type}/${id}?language=ko`);
-  console.log('media: ', data);
+  const { data: recommandationData } = useFetch<MediaItem>(
+    `${type}/${id}/recommendations?language=ko`,
+  );
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -60,26 +63,30 @@ export default function DetailModal({ type, id }: Props) {
           </button>
         </div>
 
-        {/* 정보 */}
-        <div className="flex flex-col gap-2 px-10 pt-2">
-          <p className="text-gray-200">
-            {year}
-            <span className="mx-4">·</span>
-            {runtimeOrSeasons}
-          </p>
-          <div className="mb-6 flex items-center gap-2">
-            <p>장르:</p>
-            {data.genres.map(tag => (
-              <p
-                key={tag.id}
-                className="rounded-md bg-stone-700 px-2 py-1 text-sm"
-              >
-                {tag.name}
-              </p>
-            ))}
+        {/* 본문 */}
+        <div className="flex flex-col gap-6 px-10 pt-2">
+          <div className="flex flex-col gap-2">
+            <p className="text-gray-200">
+              {year}
+              <span className="mx-2">·</span>
+              {runtimeOrSeasons}
+            </p>
+            <div className="mb-5 flex items-center gap-2">
+              <p>장르:</p>
+              {data.genres.map(tag => (
+                <p
+                  key={tag.id}
+                  className="rounded-md bg-stone-700 px-2 py-1 text-sm"
+                >
+                  {tag.name}
+                </p>
+              ))}
+            </div>
+            {data.tagline && <p className="text-lg italic">"{data.tagline}"</p>}
+            <p>{data.overview}</p>
           </div>
-          {data.tagline && <p className="text-lg italic">"{data.tagline}"</p>}
-          <p>{data.overview}</p>
+
+          <Recommandation data={recommandationData} />
         </div>
       </div>
     </div>
