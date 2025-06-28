@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import Banner from '@/components/Banner';
 import Sliders from '@/components/Sliders';
-import DetailModal from '@/components/DetailModal';
+import DetailModal from '@/components/detailModal/DetailModal';
 
 export default function Home() {
   const [searchParams] = useSearchParams();

@@ -1,11 +1,11 @@
+import { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { IoMdCloseCircle } from 'react-icons/io';
 import type { MediaItem } from '@/types';
 import useFetch from '@/hooks/useFetch';
 import { BASE_URL_ORIGIN } from '@/constants';
 import { parseMediaInfo } from '@/utils/parseMediaInfo';
-import Button from './common/Button';
-import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import Button from '@/components/common/Button';
 
 interface Props {
   type: string;
