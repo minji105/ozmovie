@@ -40,7 +40,7 @@ export default function DetailModal({ type, id, onClose }: Props) {
     // 모달 배경
     <div className="fixed left-0 top-0 z-[1000] h-full w-full overflow-y-scroll bg-black/80 px-5 py-10">
       {/* 모달 */}
-      <div className="relative m-auto max-w-4xl overflow-hidden rounded-md bg-stone-900 pb-5">
+      <div className="relative m-auto max-w-4xl overflow-hidden rounded-md bg-stone-900 pb-10">
         {/* 상단 백드랍 이미지 및 제목, 닫기 버튼 */}
         <div className="relative h-[440px] w-full">
           <img
