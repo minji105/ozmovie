@@ -20,7 +20,7 @@ export function parseMediaInfo(media: any, media_type: string) {
   const seasons =
     media_type === 'tv' ? `시즌 ${media.number_of_seasons}개` : null;
 
-  const runtime = `${Math.floor(media.runtime / 60)}시간 ${media.runtime % 60}분`;
+  const runtime = `${media.runtime >= 60 ? `${Math.floor(media.runtime / 60)}시간` : ''} ${media.runtime % 60}분`;
 
   return { title, originalTitle, year, overview, seasons, runtime };
 }
