@@ -21,4 +21,5 @@ export interface MediaItem {
   genres: Genre[];
   runtime: string;
   number_of_seasons: string;
+  seasons: any;
 }
