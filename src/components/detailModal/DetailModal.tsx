@@ -34,7 +34,7 @@ export default function DetailModal({ type, id, onClose }: Props) {
 
   if (loading || !data) return null;
 
-  const { title, year, runtimeOrSeasons } = parseMediaInfo(data, type);
+  const { title, year, seasons, runtime } = parseMediaInfo(data, type);
 
   return (
     // 모달 배경
@@ -72,7 +72,7 @@ export default function DetailModal({ type, id, onClose }: Props) {
             <p className="text-gray-200">
               {year}
               <span className="mx-2">·</span>
-              {runtimeOrSeasons}
+              {seasons || runtime}
             </p>
             <div className="mb-5 flex items-center gap-2">
               <p>장르:</p>
