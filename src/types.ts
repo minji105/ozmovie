@@ -21,4 +21,21 @@ export interface MediaItem {
   genres: Genre[];
   runtime: string;
   number_of_seasons: string;
+  seasons: any;
+}
+
+export interface Episode {
+  id: number;
+  air_date: string;
+  episode_number: number;
+  name: string;
+  overview: string;
+  still_path: string;
+  runtime: number;
+}
+
+export interface SeasonItem {
+  id: number;
+  name: string;
+  episodes: Episode[];
 }

@@ -2,9 +2,9 @@ import MediaCard from '../MediaCard';
 
 export default function Recommendation({ data }: { data: any }) {
   return (
-    <>
-      <h2 className="mt-10 text-xl">함께 시청된 콘텐츠</h2>
-      <section className="grid grid-cols-[repeat(4,1fr)] gap-6">
+    <section>
+      <h2 className="mb-6 text-xl">함께 시청된 콘텐츠</h2>
+      <div className="grid grid-cols-[repeat(4,1fr)] gap-6">
         {data?.results.map((el: any) => (
           <MediaCard
             key={el.id}
@@ -13,7 +13,7 @@ export default function Recommendation({ data }: { data: any }) {
             path={`?type=${el.media_type}&id=${el.id}`}
           />
         ))}
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

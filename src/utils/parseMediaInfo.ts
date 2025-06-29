@@ -17,10 +17,10 @@ export function parseMediaInfo(media: any, media_type: string) {
         : media.overview;
   }
 
-  const runtimeOrSeasons =
-    media_type === 'tv'
-      ? `시즌 ${media.number_of_seasons}개`
-      : `${Math.floor(media.runtime / 60)}시간 ${media.runtime % 60}분`;
+  const seasons =
+    media_type === 'tv' ? `시즌 ${media.number_of_seasons}개` : null;
 
-  return { title, originalTitle, year, overview, runtimeOrSeasons };
+  const runtime = `${media.runtime >= 60 ? `${Math.floor(media.runtime / 60)}시간` : ''} ${media.runtime % 60}분`;
+
+  return { title, originalTitle, year, overview, seasons, runtime };
 }
