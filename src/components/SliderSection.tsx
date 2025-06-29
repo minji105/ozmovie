@@ -9,7 +9,11 @@ interface SliderSectionProps {
   type: string;
 }
 
-export default function SliderSection({ data, title }: SliderSectionProps) {
+export default function SliderSection({
+  data,
+  title,
+  type,
+}: SliderSectionProps) {
   const { currentPage, setCurrentPage, cardsPerPage } = useResizeSlider();
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -44,7 +48,11 @@ export default function SliderSection({ data, title }: SliderSectionProps) {
               padding: '4px',
             }}
           >
-            <MediaCard title={el.title || ''} imgSrc={el.poster_path} />
+            <MediaCard
+              title={el.title || ''}
+              imgSrc={el.poster_path}
+              path={`?type=${type}&id=${el.id}`}
+            />
           </div>
         ))}
       </div>
