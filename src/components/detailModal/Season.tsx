@@ -52,7 +52,7 @@ export default function Season({ id, seriesLength }: Props) {
             return (
               <div
                 key={episode.id}
-                className="mb-2 flex items-center gap-4 p-8"
+                className="flex cursor-pointer items-center gap-4 p-8 hover:bg-stone-800"
               >
                 <p className="text-xl text-gray-300">{index + 1}</p>
                 <img
