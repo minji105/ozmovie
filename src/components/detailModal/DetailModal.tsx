@@ -6,6 +6,7 @@ import { BASE_URL_ORIGIN } from '@/constants';
 import { parseMediaInfo } from '@/utils/parseMediaInfo';
 import Button from '@/components/common/Button';
 import Recommendation from '@/components/detailModal/Recommendation';
+import Season from '@/components/detailModal/Season';
 
 interface Props {
   type: string;
@@ -23,8 +24,6 @@ export default function DetailModal({ type, id, onClose }: Props) {
   const { data: recommendationData } = useFetch<RecommendationsResponse>(
     `${type}/${id}/recommendations?language=ko`,
   );
-
-  console.log(recommendationData);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -68,7 +67,7 @@ export default function DetailModal({ type, id, onClose }: Props) {
         </div>
 
         {/* 본문 */}
-        <div className="flex flex-col gap-6 px-10 pt-2">
+        <div className="flex flex-col gap-10 px-10 pt-2">
           <div className="flex flex-col gap-2">
             <p className="text-gray-200">
               {year}
@@ -89,6 +88,10 @@ export default function DetailModal({ type, id, onClose }: Props) {
             {data.tagline && <p className="text-lg italic">"{data.tagline}"</p>}
             <p>{data.overview}</p>
           </div>
+
+          {type === 'tv' ? (
+            <Season id={data.id} seriesLength={data.seasons.length} />
+          ) : null}
 
           {recommendationData?.results?.length ? (
             <Recommendation data={recommendationData} />
