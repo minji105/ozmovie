@@ -42,7 +42,7 @@ export default function DetailModal({ type, id, onClose }: Props) {
       {/* 모달 */}
       <div className="relative m-auto max-w-4xl overflow-hidden rounded-md bg-stone-900 pb-10">
         {/* 상단 백드랍 이미지 및 제목, 닫기 버튼 */}
-        <div className="relative h-[440px] w-full">
+        <div className="relative aspect-[1.2] w-full sm:aspect-[1.8]">
           <img
             src={`${BASE_URL_ORIGIN}${data.backdrop_path}`}
             alt={title}
