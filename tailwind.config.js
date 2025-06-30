@@ -5,17 +5,19 @@ export default {
     './src/**/*.{js,jsx,ts,tsx}',],
   theme: {
     extend: {
+      screens: {
+        'xs': '460px'
+      },
       colors: {
         red: { primary: "#df0000", hover: "#bd0101" },
       },
       backgroundImage: {
         auth: "url(src/assets/bg.png)",
       },
-      fontSize: {
-        sm: ['14px', '20px'],
-        base: ['16px', '24px'],
-        lg: ['20px', '28px'],
-        xl: ['24px', '32px'],
+      spacing: {
+        spacingSm: '20px',
+        spacingMd: '32px',
+        spacingLg: '50px',
       }
     },
   },
