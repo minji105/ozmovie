@@ -24,7 +24,7 @@ export default function NavBar() {
 
   return (
     <div
-      className={`fixed z-[100] flex w-full items-center justify-between px-[5vw] py-4 transition-all duration-500 ${isScrolled ? 'bg-black' : 'bg-transparent'}`}
+      className={`px-spacingSm lg:px-spacingLg fixed z-[100] flex w-full items-center justify-between py-4 transition-all duration-500 md:px-spacingMd ${isScrolled ? 'bg-black' : 'bg-transparent'}`}
     >
       <Link to="/" onClick={() => setInputDebounce('')}>
         <h1 className="text-xl font-black text-red-primary md:hidden">OZ</h1>
@@ -55,7 +55,7 @@ export default function NavBar() {
           <UserIcon />
         ) : (
           <Link to="/login">
-            <button className="mr-2">로그인</button>
+            <button className="ml-2">로그인</button>
           </Link>
         )}
       </div>
