@@ -42,7 +42,7 @@ export default function Sliders() {
   ];
 
   return (
-    <div className="w-full">
+    <div className="mt-[-64px] w-full md:mt-[-72px] xl:mt-[-100px]">
       {sliders.map(
         (slider, idx) =>
           !slider.loading && (
