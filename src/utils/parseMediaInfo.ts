@@ -10,10 +10,10 @@ export function parseMediaInfo(media: any, media_type: string) {
 
   let overview = '';
   if (media.overview) {
-    const overviewSentences = media.overview.split('. ');
+    const overviewSentences = media.overview.match(/[^.!?]+[.!?]+/g) || [];
     overview =
       overviewSentences.length > 3
-        ? overviewSentences.slice(0, 3).join('. ') + '...'
+        ? overviewSentences.slice(0, 3).join(' ') + '...'
         : media.overview;
   }
 
