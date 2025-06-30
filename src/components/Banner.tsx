@@ -46,14 +46,14 @@ export default function Banner() {
       <div ref={nodeRef} className="banner-responsive relative">
         <div className="banner-responsive w-full">
           <img
-            className="banner-responsive w-full object-cover"
+            className="banner-responsive w-full object-cover brightness-[90%]"
             src={`${BASE_URL_ORIGIN}${media.backdrop_path}`}
             alt={title}
           />
           <div className="banner-gradient absolute inset-0" />
         </div>
 
-        <div className="banner-info responsive-spacing">
+        <div className="banner-info responsive-spacing w-full">
           <p className="xs:text-4xl text-3xl font-black md:text-5xl lg:text-6xl">
             {title}
           </p>
@@ -69,7 +69,7 @@ export default function Banner() {
               {year}
             </span>
           </div>
-          <p className="w-full break-keep text-sm md:w-[calc(50%-5vw)] xl:text-base">
+          <p className="w-full break-keep text-sm md:w-1/2 xl:text-base">
             {overview}
           </p>
 
