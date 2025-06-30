@@ -24,7 +24,7 @@ export default function NavBar() {
 
   return (
     <div
-      className={`px-spacingSm lg:px-spacingLg fixed z-[100] flex w-full items-center justify-between py-4 transition-all duration-500 md:px-spacingMd ${isScrolled ? 'bg-black' : 'bg-transparent'}`}
+      className={`responsive-spacing fixed z-[100] flex w-full items-center justify-between py-4 transition-all duration-500 ${isScrolled ? 'bg-black' : 'bg-transparent'}`}
     >
       <Link to="/" onClick={() => setInputDebounce('')}>
         <h1 className="text-xl font-black text-red-primary md:hidden">OZ</h1>
@@ -33,7 +33,7 @@ export default function NavBar() {
         </h1>
       </Link>
 
-      <div className="flex items-center gap-[2vw]">
+      <div className="flex items-center">
         <div className="flex items-center">
           <input
             ref={inputRef}
@@ -45,7 +45,7 @@ export default function NavBar() {
           />
           <button
             onClick={() => setIsInputVisible(!isInputVisible)}
-            className={`text-xl text-white ${isInputVisible ? 'hidden' : ''}`}
+            className={`mr-4 text-xl text-white ${isInputVisible ? 'hidden' : ''}`}
           >
             <IoSearchSharp className="text-2xl" />
           </button>
@@ -55,7 +55,7 @@ export default function NavBar() {
           <UserIcon />
         ) : (
           <Link to="/login">
-            <button className="ml-2">로그인</button>
+            <button>로그인</button>
           </Link>
         )}
       </div>

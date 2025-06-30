@@ -53,7 +53,7 @@ export default function Banner() {
           <div className="banner-gradient absolute inset-0" />
         </div>
 
-        <div className="banner-info">
+        <div className="banner-info responsive-spacing">
           <p className="xs:text-4xl text-3xl font-black md:text-5xl lg:text-6xl">
             {title}
           </p>
