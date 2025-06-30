@@ -28,7 +28,7 @@ export default function Login() {
     <AuthLayout>
       <form
         onSubmit={handleSubmit(handleLogin)}
-        className="relative mx-auto mb-20 mt-14 flex w-full min-w-[340px] flex-col gap-4 rounded-2xl bg-black p-[5vw] sm:mt-24 sm:w-[500px] sm:bg-[#000000c1] sm:p-14"
+        className="p-spacingSm relative mx-auto mb-20 mt-14 flex w-full min-w-[340px] flex-col gap-4 rounded-2xl bg-black sm:mt-24 sm:w-[500px] sm:bg-[#000000c1] sm:p-14"
       >
         <h2 className="mb-4 text-3xl font-bold sm:text-center">로그인</h2>
 
