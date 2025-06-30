@@ -52,6 +52,6 @@ body {
 
   /* SliderSection Button */
   .slider-button {
-    @apply w-spacingSm md:w-spacingMd lg:w-spacingLg absolute top-[40px] z-10 h-[calc(100%-40px)] bg-black/50 text-2xl text-transparent transition-all duration-200 ease-in-out hover:bg-black/80 hover:text-3xl hover:text-white group-hover:bg-black/80 group-hover:text-white lg:text-3xl hover:lg:text-4xl;
+    @apply w-spacingSm md:w-spacingMd lg:w-spacingLg absolute top-[36px] z-10 h-[calc(100%-40px)] bg-black/50 text-2xl text-transparent transition-all duration-200 ease-in-out hover:bg-black/80 hover:text-3xl hover:text-white group-hover:bg-black/80 group-hover:text-white lg:text-3xl hover:lg:text-4xl;
   }
 }
