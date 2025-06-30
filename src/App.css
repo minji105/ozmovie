@@ -29,7 +29,7 @@ body {
 /* Banner.jsx SkeletonBanner.jsx */
 @layer base {
   .banner-responsive {
-    @apply aspect-[1] sm:aspect-[1.4] lg:aspect-[1.8];
+    @apply aspect-[0.7] xs:aspect-[1] sm:aspect-[1.4] md:aspect-[1.6] lg:aspect-[1.8] xl:aspect-[2];
   }
 
   .banner-gradient {
@@ -41,6 +41,6 @@ body {
   }
 
   .banner-info {
-    @apply absolute bottom-[20vw] z-20 mx-[5vw] flex w-[calc(100%-5vw)] flex-col gap-4 md:bottom-[14vw] lg:gap-6
+    @apply px-spacingSm lg:px-spacingLg absolute bottom-[56px] z-20 flex flex-col gap-4 md:bottom-[72px] md:px-spacingMd lg:bottom-[108px] lg:gap-6 xl:bottom-[124px];
   }
 }
