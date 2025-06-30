@@ -38,7 +38,7 @@ export default function DetailModal({ type, id, onClose }: Props) {
 
   return (
     // 모달 배경
-    <div className="fixed left-0 top-0 z-[1000] h-full w-full overflow-y-scroll bg-black/80 px-5 py-10">
+    <div className="fixed left-0 top-0 z-[1000] h-full w-full overflow-y-scroll bg-black/80 px-3 py-10 sm:px-10">
       {/* 모달 */}
       <div className="relative m-auto max-w-4xl overflow-hidden rounded-md bg-stone-900 pb-10">
         {/* 상단 백드랍 이미지 및 제목, 닫기 버튼 */}
@@ -69,23 +69,25 @@ export default function DetailModal({ type, id, onClose }: Props) {
         </div>
 
         {/* 본문 */}
-        <div className="responsive-spacing flex flex-col gap-10 pt-2">
+        <div className="responsive-spacing flex flex-col gap-10 pt-2 text-sm sm:text-base">
           <div className="flex flex-col gap-2">
             <p className="text-gray-200">
               {year}
               <span className="mx-2">·</span>
               {seasons || runtime}
             </p>
-            <div className="mb-5 flex items-center gap-2">
-              <p>장르:</p>
-              {data.genres.map(tag => (
-                <p
-                  key={tag.id}
-                  className="rounded-md bg-stone-700 px-2 py-1 text-sm"
-                >
-                  {tag.name}
-                </p>
-              ))}
+            <div className="mb-5 flex gap-2">
+              <p className="break-keep py-1">장르:</p>
+              <div className="flex flex-wrap gap-2">
+                {data.genres.map(tag => (
+                  <p
+                    key={tag.id}
+                    className="rounded-md bg-stone-700 px-2 py-1 text-sm"
+                  >
+                    {tag.name}
+                  </p>
+                ))}
+              </div>
             </div>
             {data.tagline && <p className="text-lg italic">"{data.tagline}"</p>}
             <p className="break-keep">{data.overview}</p>
