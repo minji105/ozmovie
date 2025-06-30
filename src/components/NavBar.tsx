@@ -34,18 +34,18 @@ export default function NavBar() {
       </Link>
 
       <div className="flex items-center">
-        <div className="flex items-center">
+        <div className="mr-4 flex items-center">
           <input
             ref={inputRef}
             type="text"
             value={inputDebounce}
-            className={`transition-width border-b-2 bg-transparent text-white outline-none transition-[width] duration-300 ${isInputVisible || location.pathname === '/search' ? 'w-[calc(150px+5vw)]' : 'w-0'}`}
+            className={`transition-width border-b-2 bg-transparent text-white outline-none transition-[width] duration-300 ${isInputVisible || location.pathname === '/search' ? 'w-[200px]' : 'w-0'}`}
             onBlur={() => setIsInputVisible(false)}
             onChange={e => setInputDebounce(e.target.value)}
           />
           <button
             onClick={() => setIsInputVisible(!isInputVisible)}
-            className={`mr-4 text-xl text-white ${isInputVisible ? 'hidden' : ''}`}
+            className={`text-xl text-white ${isInputVisible ? 'hidden' : ''}`}
           >
             <IoSearchSharp className="text-2xl" />
           </button>
