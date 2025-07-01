@@ -29,8 +29,8 @@ export default function SliderSection({
   };
 
   return (
-    <div className="group relative mb-10 w-full overflow-hidden px-[5vw]">
-      <h3 className="mb-4">{title}</h3>
+    <div className="responsive-spacing group relative mb-5 w-full overflow-hidden md:mb-8">
+      <h3 className="mb-1 text-lg md:mb-2 md:text-xl">{title}</h3>
 
       <div
         className="ease flex transition-transform duration-1000"
@@ -58,7 +58,7 @@ export default function SliderSection({
       </div>
 
       <button
-        className="absolute left-0 top-[40px] z-10 h-[calc(100%-40px)] w-[5vw] rounded-r-sm bg-black/50 text-3xl text-transparent transition-all duration-200 ease-in-out hover:bg-black/80 hover:text-4xl hover:text-white group-hover:bg-black/80 group-hover:text-white"
+        className="slider-button left-0 rounded-r-sm"
         onClick={handlePrev}
         style={{ opacity: currentPage === 0 ? '0' : '1' }}
       >
@@ -66,7 +66,7 @@ export default function SliderSection({
       </button>
 
       <button
-        className="absolute right-0 top-[40px] z-10 h-[calc(100%-40px)] w-[5vw] rounded-l-sm bg-black/50 text-3xl text-transparent transition-all duration-200 ease-in-out hover:bg-black/80 hover:text-4xl hover:text-white group-hover:bg-black/80 group-hover:text-white"
+        className="slider-button right-0 rounded-l-sm"
         onClick={handleNext}
         style={{ opacity: currentPage === totalPages - 1 ? '0' : '1' }}
       >

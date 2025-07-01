@@ -26,10 +26,11 @@ body {
   transition: opacity 1000ms;
 }
 
-/* Banner.jsx SkeletonBanner.jsx */
 @layer base {
+
+  /* Banner.jsx SkeletonBanner.jsx */
   .banner-responsive {
-    @apply aspect-[1] sm:aspect-[1.4] lg:aspect-[1.8];
+    @apply aspect-[0.7] xs:aspect-[1] sm:aspect-[1.4] lg:aspect-[1.8] xl:aspect-[2];
   }
 
   .banner-gradient {
@@ -41,6 +42,16 @@ body {
   }
 
   .banner-info {
-    @apply absolute bottom-[20vw] z-20 mx-[5vw] flex w-[calc(100%-5vw)] flex-col gap-4 md:bottom-[14vw] lg:gap-6
+    @apply absolute bottom-[100px] z-20 flex flex-col gap-4 md:bottom-[128px] lg:gap-6 xl:bottom-[164px];
+  }
+
+  /* responsive spacing */
+  .responsive-spacing {
+    @apply px-spacingSm md:px-spacingMd lg:px-spacingLg;
+  }
+
+  /* SliderSection Button */
+  .slider-button {
+    @apply w-spacingSm md:w-spacingMd lg:w-spacingLg absolute top-[36px] z-10 h-[calc(100%-40px)] bg-black/50 text-2xl text-transparent transition-all duration-200 ease-in-out hover:bg-black/80 hover:text-3xl hover:text-white group-hover:bg-black/80 group-hover:text-white lg:text-3xl hover:lg:text-4xl;
   }
 }

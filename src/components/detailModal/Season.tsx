@@ -26,8 +26,10 @@ export default function Season({ id, seriesLength }: Props) {
 
   return (
     <section>
-      <div className="flex justify-between">
-        <h2 className="text-xl">회차</h2>
+      <div className="flex items-start justify-between">
+        <h2 className="mb-2 border-b-4 border-red-700 pb-2 text-xl sm:mb-3">
+          회차
+        </h2>
 
         <select
           id="season"
@@ -47,27 +49,37 @@ export default function Season({ id, seriesLength }: Props) {
       {seasonData && !loading && (
         <div className="divide-y divide-gray-600">
           {seasonData.episodes?.map((episode, index) => {
-            const { runtime } = parseMediaInfo(episode, 'tv');
+            const { overview, runtime } = parseMediaInfo(episode, 'tv', 2);
 
             return (
               <div
                 key={episode.id}
-                className="flex cursor-pointer items-center gap-4 p-8 hover:bg-stone-800"
+                className="xs:gap-4 flex cursor-pointer flex-col gap-2 py-4 hover:bg-stone-800 md:p-8"
               >
-                <p className="text-xl text-gray-300">{index + 1}</p>
-                <img
-                  src={`${BASE_URL}${episode.still_path}`}
-                  alt={episode.name}
-                  className="w-[25%]"
-                />
-                <div className="flex w-full flex-col gap-2">
-                  <p className="font-semibold">{episode.name}</p>
-                  <div className="flex justify-between text-sm text-gray-300">
-                    <p>{episode.air_date}</p>
-                    <p>{runtime}</p>
+                <div className="xs:gap-4 flex items-center gap-2">
+                  <p className="hidden text-xl text-gray-300 sm:block">
+                    {index + 1}
+                  </p>
+                  <img
+                    src={`${BASE_URL}${episode.still_path}`}
+                    alt={episode.name}
+                    className="w-[35%] sm:w-[25%]"
+                  />
+                  <div className="xs:gap-2 flex w-full flex-col gap-1">
+                    <p className="text-sm font-semibold sm:text-base">
+                      {episode.name}
+                    </p>
+                    <div className="xs:text-sm flex justify-between text-xs text-gray-400">
+                      <p>{episode.air_date}</p>
+                      <p>{runtime}</p>
+                    </div>
+                    <p className="hidden text-sm text-gray-100 sm:block">
+                      {episode.overview}
+                    </p>
                   </div>
-                  <p className="text-sm text-gray-100">{episode.overview}</p>
                 </div>
+
+                <p className="text-sm text-gray-100 sm:hidden">{overview}</p>
               </div>
             );
           })}

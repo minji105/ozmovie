@@ -46,38 +46,40 @@ export default function Banner() {
       <div ref={nodeRef} className="banner-responsive relative">
         <div className="banner-responsive w-full">
           <img
-            className="banner-responsive w-full object-cover"
+            className="banner-responsive w-full object-cover brightness-[90%]"
             src={`${BASE_URL_ORIGIN}${media.backdrop_path}`}
             alt={title}
           />
           <div className="banner-gradient absolute inset-0" />
         </div>
 
-        <div className="banner-info">
-          <p className="text-[5vw] font-black">{title}</p>
-          <div className="text-[calc(1vw+4px)]">
+        <div className="banner-info responsive-spacing w-full">
+          <p className="xs:text-4xl text-3xl font-black md:text-5xl lg:text-6xl">
+            {title}
+          </p>
+          <div className="xs:flex-row flex flex-col text-sm text-gray-300 xl:text-base">
             <span className="mr-12">
               ★ {media.vote_average.toFixed(1)}
               <span className="mx-4">|</span>
               {media.vote_count}
             </span>
-            <span className="text-gray-300">
+            <span>
               {originalTitle}
               <span className="mx-4">·</span>
               {year}
             </span>
           </div>
-          <p className="w-[calc(100%-5vw)] break-keep text-[calc(1vw+4px)] leading-[calc(1vw+10px)] text-gray-300 md:w-[calc(50%-5vw)]">
+          <p className="w-full break-keep text-sm md:w-1/2 xl:text-base">
             {overview}
           </p>
 
           <div className="flex gap-4">
             <Button variant="play">
-              <span className="mr-4">▶</span>재생
+              <span className="mr-2">▶</span>재생
             </Button>
             <Link to={`?type=${media.media_type}&id=${media.id}`}>
               <Button variant="info">
-                <span className="mr-4">ⓘ</span>상세 정보
+                <span className="mr-2">ⓘ</span>상세 정보
               </Button>
             </Link>
           </div>

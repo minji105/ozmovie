@@ -7,9 +7,9 @@ interface AuthLayoutProps {
 function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <div className="relative h-full min-h-screen w-full overflow-x-hidden">
-      <div className="sm:bg-auth absolute inset-0 overflow-hidden bg-black bg-cover bg-center brightness-50" />
+      <div className="absolute inset-0 overflow-hidden bg-black bg-cover bg-center brightness-50 sm:bg-auth" />
       <Link to="/">
-        <div className="text-red-primary absolute z-20 px-[5vw] py-5 text-[calc(1vw+16px)] font-bold">
+        <div className="responsive-spacing absolute z-20 py-5 text-xl font-bold text-red-primary sm:text-2xl">
           <h1>OZMOVIE</h1>
         </div>
       </Link>
