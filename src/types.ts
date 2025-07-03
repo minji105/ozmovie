@@ -39,3 +39,10 @@ export interface SeasonItem {
   name: string;
   episodes: Episode[];
 }
+
+export interface FavoriteItem {
+  id: number;
+  media_type: string;
+  title: string;
+  poster_path: string | null;
+}
