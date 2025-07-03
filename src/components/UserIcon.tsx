@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import { useAuth } from '@/contexts/AuthContext';
 import useLogout from '@/hooks/auth/useLogout';
@@ -19,15 +20,14 @@ export default function UserIcon() {
       )}
 
       <div className="absolute right-0 top-0 hidden w-max group-hover:block">
-        <div className="mt-10 bg-[#000000c1] p-4 text-sm">
-          <button
-            type="button"
-            className="hover:underline"
-            onClick={handleLogout}
-          >
-            로그아웃
-          </button>
-        </div>
+        <ul className="mt-10 flex flex-col gap-4 bg-[#000000c1] p-4 text-sm">
+          <li className="hover:underline">
+            <Link to="/mypage">마이페이지</Link>
+          </li>
+          <li className="hover:underline">
+            <button onClick={handleLogout}>로그아웃</button>
+          </li>
+        </ul>
       </div>
     </div>
   );

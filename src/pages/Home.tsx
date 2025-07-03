@@ -1,27 +1,16 @@
-import { useSearchParams, useLocation, useNavigate } from 'react-router-dom';
 import Banner from '@/components/Banner';
 import Sliders from '@/components/Sliders';
 import DetailModal from '@/components/detailModal/DetailModal';
+import { useDetailModal } from '@/hooks/useDetailModal';
 
 export default function Home() {
-  const [searchParams] = useSearchParams();
-  const type = searchParams.get('type');
-  const id = searchParams.get('id');
-
-  const navigate = useNavigate();
-  const location = useLocation();
+  const { type, id, closeModal } = useDetailModal();
 
   return (
     <>
       <Banner />
       <Sliders />
-      {type && id && (
-        <DetailModal
-          type={type}
-          id={id}
-          onClose={() => navigate(location.pathname)}
-        />
-      )}
+      {type && id && <DetailModal type={type} id={id} onClose={closeModal} />}
     </>
   );
 }
