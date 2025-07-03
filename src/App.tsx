@@ -5,7 +5,7 @@ import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import Layout from '@/components/Layout';
 import Search from '@/pages/Search';
-// import Detail from './pages/Detail';
+import Mypage from './pages/mypage';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="search" element={<Search />} />
-          {/* <Route path="detail/:type/:id" element={<Detail />} /> */}
+          <Route path="mypage" element={<Mypage />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
