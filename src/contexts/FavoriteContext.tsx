@@ -5,14 +5,14 @@ import {
   useState,
   type ReactNode,
 } from 'react';
-import type { FavoriteItem } from '@/types';
+import type { UserMediaItem } from '@/types';
 import supabase from '@/supabaseClient';
 import { useAuth } from './AuthContext';
 
 interface FavoriteContextType {
-  favorites: FavoriteItem[];
+  favorites: UserMediaItem[];
   isFavorite: (id: number) => boolean;
-  toggleFavorite: (item: FavoriteItem) => Promise<void>;
+  toggleFavorite: (item: UserMediaItem) => Promise<void>;
   loading: boolean;
 }
 
@@ -22,7 +22,7 @@ const FavoriteContext = createContext<FavoriteContextType | undefined>(
 
 export function FavoriteProvider({ children }: { children: ReactNode }) {
   const { user } = useAuth();
-  const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
+  const [favorites, setFavorites] = useState<UserMediaItem[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -59,7 +59,7 @@ export function FavoriteProvider({ children }: { children: ReactNode }) {
     return favorites.some(el => el.id === id);
   };
 
-  const toggleFavorite = async (item: FavoriteItem) => {
+  const toggleFavorite = async (item: UserMediaItem) => {
     if (!user) return;
 
     if (isFavorite(item.id)) {

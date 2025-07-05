@@ -5,14 +5,14 @@ import {
   useState,
   type ReactNode,
 } from 'react';
-import type { FavoriteItem } from '@/types';
+import type { UserMediaItem } from '@/types';
 import supabase from '@/supabaseClient';
 import { useAuth } from './AuthContext';
 
 interface LikeContextType {
-  likes: FavoriteItem[];
+  likes: UserMediaItem[];
   isLiked: (id: number) => boolean;
-  toggleLike: (item: FavoriteItem) => Promise<void>;
+  toggleLike: (item: UserMediaItem) => Promise<void>;
   loading: boolean;
 }
 
@@ -20,7 +20,7 @@ const LikeContext = createContext<LikeContextType | undefined>(undefined);
 
 export function LikeProvider({ children }: { children: ReactNode }) {
   const { user } = useAuth();
-  const [likes, setLikes] = useState<FavoriteItem[]>([]);
+  const [likes, setLikes] = useState<UserMediaItem[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -57,7 +57,7 @@ export function LikeProvider({ children }: { children: ReactNode }) {
     return likes.some(el => el.id === id);
   };
 
-  const toggleLike = async (item: FavoriteItem) => {
+  const toggleLike = async (item: UserMediaItem) => {
     if (!user) return;
 
     if (isLiked(item.id)) {
