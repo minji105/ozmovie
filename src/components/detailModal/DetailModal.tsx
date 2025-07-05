@@ -1,7 +1,12 @@
 import { useEffect } from 'react';
 import { IoMdCloseCircle } from 'react-icons/io';
-import { IoAddCircleOutline, IoCheckmarkCircle } from 'react-icons/io5';
-import type { MediaItem, FavoriteItem } from '@/types';
+import {
+  IoAddCircleOutline,
+  IoCheckmarkCircle,
+  IoHeartCircleOutline,
+  IoHeartCircle,
+} from 'react-icons/io5';
+import type { MediaItem, UserMediaItem } from '@/types';
 import useFetch from '@/hooks/useFetch';
 import { BASE_URL_ORIGIN } from '@/constants';
 import { parseMediaInfo } from '@/utils/parseMediaInfo';
@@ -9,6 +14,7 @@ import Button from '@/components/common/Button';
 import Recommendation from '@/components/detailModal/Recommendation';
 import Season from '@/components/detailModal/Season';
 import { useFavorites } from '@/contexts/FavoriteContext';
+import { useLikes } from '@/contexts/LikeContext';
 
 interface Props {
   type: string;
@@ -22,13 +28,14 @@ interface RecommendationsResponse {
 
 export default function DetailModal({ type, id, onClose }: Props) {
   const { isFavorite, toggleFavorite } = useFavorites();
+  const { isLiked, toggleLike } = useLikes();
   const { data, loading } = useFetch<MediaItem>(`${type}/${id}?language=ko`);
 
   const { data: recommendationData } = useFetch<RecommendationsResponse>(
     `${type}/${id}/recommendations?language=ko`,
   );
 
-  const item: FavoriteItem = {
+  const item: UserMediaItem = {
     id: Number(id),
     media_type: type,
     title: data?.title || data?.name || '',
@@ -77,6 +84,16 @@ export default function DetailModal({ type, id, onClose }: Props) {
                   <IoCheckmarkCircle />
                 ) : (
                   <IoAddCircleOutline />
+                )}
+              </button>
+              <button
+                className="m-0 rounded-full bg-transparent stroke-[1px] p-0 text-5xl"
+                onClick={() => toggleLike(item)}
+              >
+                {isLiked(Number(id)) ? (
+                  <IoHeartCircle />
+                ) : (
+                  <IoHeartCircleOutline />
                 )}
               </button>
             </div>
