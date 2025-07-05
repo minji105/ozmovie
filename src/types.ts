@@ -40,14 +40,7 @@ export interface SeasonItem {
   episodes: Episode[];
 }
 
-export interface FavoriteItem {
-  id: number;
-  media_type: string;
-  title: string;
-  poster_path: string | null;
-}
-
-export interface LikeItem {
+export interface UserMediaItem {
   id: number;
   media_type: string;
   title: string;
