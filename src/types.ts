@@ -46,3 +46,10 @@ export interface FavoriteItem {
   title: string;
   poster_path: string | null;
 }
+
+export interface LikeItem {
+  id: number;
+  media_type: string;
+  title: string;
+  poster_path: string | null;
+}
