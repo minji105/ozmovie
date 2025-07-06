@@ -78,7 +78,13 @@ export default function Home() {
         )}
       </div>
 
-      {type && id && <DetailModal type={type} id={id} onClose={closeModal} />}
+      {type && id && (
+        <DetailModal
+          type={type as 'movie' | 'tv'}
+          id={id}
+          onClose={closeModal}
+        />
+      )}
     </>
   );
 }

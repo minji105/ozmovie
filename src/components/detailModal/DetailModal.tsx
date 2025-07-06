@@ -6,7 +6,7 @@ import {
   IoHeartCircleOutline,
   IoHeartCircle,
 } from 'react-icons/io5';
-import type { MediaItem, UserMediaItem } from '@/types';
+import type { MediaItem, MediaListItem } from '@/types';
 import useFetch from '@/hooks/useFetch';
 import { BASE_URL_ORIGIN } from '@/constants';
 import { parseMediaInfo } from '@/utils/parseMediaInfo';
@@ -17,7 +17,7 @@ import { useFavorites } from '@/contexts/FavoriteContext';
 import { useLikes } from '@/contexts/LikeContext';
 
 interface Props {
-  type: string;
+  type: 'movie' | 'tv';
   id: string;
   onClose: () => void;
 }
@@ -35,7 +35,7 @@ export default function DetailModal({ type, id, onClose }: Props) {
     `${type}/${id}/recommendations?language=ko`,
   );
 
-  const item: UserMediaItem = {
+  const item: MediaListItem = {
     id: Number(id),
     media_type: type,
     title: data?.title || data?.name || '',
