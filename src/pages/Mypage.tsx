@@ -32,7 +32,6 @@ export default function Mypage() {
                 key={idx}
                 title={slider.title}
                 data={slider.data}
-                type={null}
               />
             ),
         )}
