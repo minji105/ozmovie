@@ -1,11 +1,11 @@
-import type { MediaListItem } from '@/types';
+import type { MediaItem } from '@/types';
 import useFetch from '@/hooks/useFetch';
 import { useDetailModal } from '@/hooks/useDetailModal';
 import Banner from '@/components/Banner';
 import DetailModal from '@/components/detailModal/DetailModal';
 import SliderSection from '@/components/SliderSection';
 
-type Movie = MediaListItem;
+type Movie = MediaItem;
 
 type FetchResponse = {
   results: Movie[];
@@ -28,21 +28,36 @@ export default function Home() {
   const sliders = [
     {
       title: '인기 영화',
-      data: popularMovieData?.results || [],
+      data:
+        popularMovieData?.results.map(el => ({
+          id: el.id,
+          media_type: 'movie' as const,
+          title: el.title || el.name || '',
+          poster_path: el.poster_path,
+        })) || [],
       loading: popularMovieLoading,
-      type: 'movie',
     },
     {
       title: '매주 공개! 이건 꼭 봐야 해',
-      data: onTheAirData?.results || [],
+      data:
+        onTheAirData?.results.map(el => ({
+          id: el.id,
+          media_type: 'tv' as const,
+          title: el.title || el.name || '',
+          poster_path: el.poster_path,
+        })) || [],
       loading: onTheAirLoading,
-      type: 'tv',
     },
     {
       title: '미국 드라마',
-      data: seriesUSData?.results || [],
+      data:
+        seriesUSData?.results.map(el => ({
+          id: el.id,
+          media_type: 'tv' as const,
+          title: el.title || el.name || '',
+          poster_path: el.poster_path,
+        })) || [],
       loading: seriesUSLoading,
-      type: 'tv',
     },
   ];
 
@@ -58,7 +73,6 @@ export default function Home() {
                 key={idx}
                 title={slider.title}
                 data={slider.data}
-                type={slider.type}
               />
             ),
         )}
