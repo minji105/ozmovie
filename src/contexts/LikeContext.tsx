@@ -1,11 +1,11 @@
 import { createContext, useContext, type ReactNode } from 'react';
-import type { UserMediaItem } from '@/types';
+import type { MediaListItem } from '@/types';
 import useMediaList from '@/hooks/useMediaList';
 
 interface LikeContextType {
-  likes: UserMediaItem[];
+  likes: MediaListItem[];
   isLiked: (id: number) => boolean;
-  toggleLike: (item: UserMediaItem) => Promise<void>;
+  toggleLike: (item: MediaListItem) => Promise<void>;
   loading: boolean;
 }
 

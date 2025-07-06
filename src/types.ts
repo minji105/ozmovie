@@ -5,7 +5,7 @@ export interface Genre {
 
 export interface MediaItem {
   id: number;
-  media_type: 'tv' | 'movie' | string;
+  media_type: 'tv' | 'movie' | null;
   title?: string;
   name?: string;
   backdrop_path: string;
@@ -40,9 +40,9 @@ export interface SeasonItem {
   episodes: Episode[];
 }
 
-export interface UserMediaItem {
+export interface MediaListItem {
   id: number;
   media_type: string;
   title: string;
-  poster_path: string | null;
+  poster_path?: string;
 }
