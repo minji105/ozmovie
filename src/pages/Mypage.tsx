@@ -2,7 +2,7 @@ import { useFavorites } from '@/contexts/FavoriteContext';
 import DetailModal from '@/components/detailModal/DetailModal';
 import { useDetailModal } from '@/hooks/useDetailModal';
 import { useLikes } from '@/contexts/LikeContext';
-import SliderSection from '@/components/SliderSection';
+import SliderList from '@/components/slider/SliderList';
 
 export default function Mypage() {
   const { type, id, closeModal } = useDetailModal();
@@ -25,19 +25,16 @@ export default function Mypage() {
   return (
     <>
       <div className="w-full">
-        {sliders.map(
-          (slider, idx) =>
-            !slider.loading && (
-              <SliderSection
-                key={idx}
-                title={slider.title}
-                data={slider.data}
-              />
-            ),
-        )}
+        <SliderList sliders={sliders} />
       </div>
 
-      {type && id && <DetailModal type={type} id={id} onClose={closeModal} />}
+      {type && id && (
+        <DetailModal
+          type={type as 'movie' | 'tv'}
+          id={id}
+          onClose={closeModal}
+        />
+      )}
     </>
   );
 }

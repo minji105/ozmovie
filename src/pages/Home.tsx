@@ -3,7 +3,7 @@ import useFetch from '@/hooks/useFetch';
 import { useDetailModal } from '@/hooks/useDetailModal';
 import Banner from '@/components/Banner';
 import DetailModal from '@/components/detailModal/DetailModal';
-import SliderSection from '@/components/SliderSection';
+import SliderList from '@/components/slider/SliderList';
 
 type Movie = MediaItem;
 
@@ -66,16 +66,7 @@ export default function Home() {
       <Banner />
 
       <div className="mt-[-64px] w-full md:mt-[-72px] xl:mt-[-100px]">
-        {sliders.map(
-          (slider, idx) =>
-            !slider.loading && (
-              <SliderSection
-                key={idx}
-                title={slider.title}
-                data={slider.data}
-              />
-            ),
-        )}
+        <SliderList sliders={sliders} />
       </div>
 
       {type && id && (
