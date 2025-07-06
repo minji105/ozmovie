@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { UserMediaItem } from '@/types';
+import type { MediaListItem } from '@/types';
 import { useAuth } from '@/contexts/AuthContext';
 import supabase from '@/supabaseClient';
 
@@ -9,7 +9,7 @@ export default function useMediaList({
   tableName: 'favorites' | 'likes';
 }) {
   const { user } = useAuth();
-  const [list, setList] = useState<UserMediaItem[]>([]);
+  const [list, setList] = useState<MediaListItem[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export default function useMediaList({
     return list.some(el => el.id === id);
   };
 
-  const toggleItem = async (item: UserMediaItem) => {
+  const toggleItem = async (item: MediaListItem) => {
     if (!user) return;
 
     if (isInList(item.id)) {

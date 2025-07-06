@@ -1,11 +1,11 @@
 import { createContext, useContext, type ReactNode } from 'react';
-import type { UserMediaItem } from '@/types';
+import type { MediaListItem } from '@/types';
 import useMediaList from '@/hooks/useMediaList';
 
 interface FavoriteContextType {
-  favorites: UserMediaItem[];
+  favorites: MediaListItem[];
   isFavorite: (id: number) => boolean;
-  toggleFavorite: (item: UserMediaItem) => Promise<void>;
+  toggleFavorite: (item: MediaListItem) => Promise<void>;
   loading: boolean;
 }
 
