@@ -1,12 +1,12 @@
-import type { MediaItem } from '@/types';
+import type { MediaListItem } from '@/types';
 import useResizeSlider from '@/hooks/useResizeSlider';
 import MediaCard from '@/components/MediaCard';
 import { useRef } from 'react';
 
 interface SliderSectionProps {
-  data: MediaItem[];
+  data: MediaListItem[];
   title: string;
-  type: string;
+  type: string | null;
 }
 
 export default function SliderSection({
@@ -50,8 +50,8 @@ export default function SliderSection({
           >
             <MediaCard
               title={el.title || ''}
-              imgSrc={el.poster_path}
-              path={`?type=${type}&id=${el.id}`}
+              imgSrc={el.poster_path || ''}
+              path={`?type=${type || el.media_type}&id=${el.id}`}
             />
           </div>
         ))}
