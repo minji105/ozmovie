@@ -6,14 +6,9 @@ import { useRef } from 'react';
 interface SliderSectionProps {
   data: MediaListItem[];
   title: string;
-  type: string | null;
 }
 
-export default function SliderSection({
-  data,
-  title,
-  type,
-}: SliderSectionProps) {
+export default function SliderSection({ data, title }: SliderSectionProps) {
   const { currentPage, setCurrentPage, cardsPerPage } = useResizeSlider();
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -27,6 +22,8 @@ export default function SliderSection({
   const handlePrev = () => {
     if (currentPage > 0) setCurrentPage(prev => prev - 1);
   };
+
+  console.log('slider list:', data);
 
   return (
     <div className="responsive-spacing group relative mb-5 w-full overflow-hidden md:mb-8">
@@ -48,11 +45,7 @@ export default function SliderSection({
               padding: '4px',
             }}
           >
-            <MediaCard
-              title={el.title || ''}
-              imgSrc={el.poster_path || ''}
-              path={`?type=${type || el.media_type}&id=${el.id}`}
-            />
+            <MediaCard item={el} />
           </div>
         ))}
       </div>
