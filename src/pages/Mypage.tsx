@@ -16,11 +16,13 @@ export default function Mypage() {
       title: '내가 찜한 리스트',
       data: favorites || [],
       loading: favoritesLoading,
+      emptyMessage: '아직 찜하신 콘텐츠가 없습니다.',
     },
     {
       title: '마음에 들어 하신 시리즈와 영화',
       data: likes || [],
       loading: likesLoading,
+      emptyMessage: '아직 좋아요한 콘텐츠가 없습니다.',
     },
   ];
 
