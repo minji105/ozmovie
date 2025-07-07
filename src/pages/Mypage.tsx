@@ -1,10 +1,12 @@
 import { useFavorites } from '@/contexts/FavoriteContext';
 import DetailModal from '@/components/detailModal/DetailModal';
 import { useDetailModal } from '@/hooks/useDetailModal';
+import { useAuth } from '@/contexts/AuthContext';
 import { useLikes } from '@/contexts/LikeContext';
 import SliderList from '@/components/slider/SliderList';
 
 export default function Mypage() {
+  const { user } = useAuth();
   const { type, id, closeModal } = useDetailModal();
   const { favorites, loading: favoritesLoading } = useFavorites();
   const { likes, loading: likesLoading } = useLikes();
@@ -22,8 +24,19 @@ export default function Mypage() {
     },
   ];
 
+  console.log(user);
+
   return (
     <>
+      <div className="m-auto flex w-20 flex-col items-center gap-2 pb-16 pt-20">
+        <img
+          className="w-full rounded-md"
+          src={user?.user_metadata.avatar_url || 'src/assets/profile.png'}
+          alt="user profile image"
+        />
+        <p className="text-xl">{user?.user_metadata.name}</p>
+      </div>
+
       <div className="w-full">
         <SliderList sliders={sliders} />
       </div>
