@@ -5,10 +5,9 @@ import { useRef } from 'react';
 
 interface SliderSectionProps {
   data: MediaListItem[];
-  title: string;
 }
 
-export default function SliderSection({ data, title }: SliderSectionProps) {
+export default function SliderSection({ data }: SliderSectionProps) {
   const { currentPage, setCurrentPage, cardsPerPage } = useResizeSlider();
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -26,9 +25,7 @@ export default function SliderSection({ data, title }: SliderSectionProps) {
   console.log('slider list:', data);
 
   return (
-    <div className="responsive-spacing group relative mb-5 w-full overflow-hidden md:mb-8">
-      <h3 className="mb-1 text-lg md:mb-2 md:text-xl">{title}</h3>
-
+    <>
       <div
         className="ease flex transition-transform duration-1000"
         ref={containerRef}
@@ -65,6 +62,6 @@ export default function SliderSection({ data, title }: SliderSectionProps) {
       >
         &gt;
       </button>
-    </div>
+    </>
   );
 }
