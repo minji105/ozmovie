@@ -1,19 +1,13 @@
-import type { MediaItem } from '@/types';
+import type { MediaListItem } from '@/types';
 import useResizeSlider from '@/hooks/useResizeSlider';
 import MediaCard from '@/components/MediaCard';
 import { useRef } from 'react';
 
 interface SliderSectionProps {
-  data: MediaItem[];
-  title: string;
-  type: string;
+  data: MediaListItem[];
 }
 
-export default function SliderSection({
-  data,
-  title,
-  type,
-}: SliderSectionProps) {
+export default function SliderSection({ data }: SliderSectionProps) {
   const { currentPage, setCurrentPage, cardsPerPage } = useResizeSlider();
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -28,10 +22,10 @@ export default function SliderSection({
     if (currentPage > 0) setCurrentPage(prev => prev - 1);
   };
 
-  return (
-    <div className="responsive-spacing group relative mb-5 w-full overflow-hidden md:mb-8">
-      <h3 className="mb-1 text-lg md:mb-2 md:text-xl">{title}</h3>
+  console.log('slider list:', data);
 
+  return (
+    <>
       <div
         className="ease flex transition-transform duration-1000"
         ref={containerRef}
@@ -48,11 +42,7 @@ export default function SliderSection({
               padding: '4px',
             }}
           >
-            <MediaCard
-              title={el.title || ''}
-              imgSrc={el.poster_path}
-              path={`?type=${type}&id=${el.id}`}
-            />
+            <MediaCard item={el} />
           </div>
         ))}
       </div>
@@ -72,6 +62,6 @@ export default function SliderSection({
       >
         &gt;
       </button>
-    </div>
+    </>
   );
 }

@@ -1,15 +1,23 @@
 import { useEffect } from 'react';
 import { IoMdCloseCircle } from 'react-icons/io';
-import type { MediaItem } from '@/types';
+import {
+  IoAddCircleOutline,
+  IoCheckmarkCircle,
+  IoHeartCircleOutline,
+  IoHeartCircle,
+} from 'react-icons/io5';
+import type { MediaItem, MediaListItem } from '@/types';
 import useFetch from '@/hooks/useFetch';
 import { BASE_URL_ORIGIN } from '@/constants';
 import { parseMediaInfo } from '@/utils/parseMediaInfo';
 import Button from '@/components/common/Button';
 import Recommendation from '@/components/detailModal/Recommendation';
 import Season from '@/components/detailModal/Season';
+import { useFavorites } from '@/contexts/FavoriteContext';
+import { useLikes } from '@/contexts/LikeContext';
 
 interface Props {
-  type: string;
+  type: 'movie' | 'tv';
   id: string;
   onClose: () => void;
 }
@@ -19,11 +27,20 @@ interface RecommendationsResponse {
 }
 
 export default function DetailModal({ type, id, onClose }: Props) {
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const { isLiked, toggleLike } = useLikes();
   const { data, loading } = useFetch<MediaItem>(`${type}/${id}?language=ko`);
 
   const { data: recommendationData } = useFetch<RecommendationsResponse>(
     `${type}/${id}/recommendations?language=ko`,
   );
+
+  const item: MediaListItem = {
+    id: Number(id),
+    media_type: type,
+    title: data?.title || data?.name || '',
+    poster_path: data?.poster_path || '',
+  };
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -55,13 +72,35 @@ export default function DetailModal({ type, id, onClose }: Props) {
               {title}
             </h1>
             <p className="mb-2">★ {data.vote_average.toFixed(1)}</p>
-            <Button variant="playSmall">
-              <span className="mr-4">▶</span>재생
-            </Button>
+            <div className="flex gap-2">
+              <Button variant="playSmall">
+                <span className="mr-4">▶</span>재생
+              </Button>
+              <button
+                className="m-0 rounded-full bg-transparent stroke-[1px] p-0 text-5xl"
+                onClick={() => toggleFavorite(item)}
+              >
+                {isFavorite(Number(id)) ? (
+                  <IoCheckmarkCircle />
+                ) : (
+                  <IoAddCircleOutline />
+                )}
+              </button>
+              <button
+                className="m-0 rounded-full bg-transparent stroke-[1px] p-0 text-5xl"
+                onClick={() => toggleLike(item)}
+              >
+                {isLiked(Number(id)) ? (
+                  <IoHeartCircle />
+                ) : (
+                  <IoHeartCircleOutline />
+                )}
+              </button>
+            </div>
           </div>
 
           <button
-            className="path-white m-spacingSm lg:m-spacingLg md:m-spacingMd absolute right-0 top-0 text-4xl"
+            className="path-white absolute right-0 top-0 m-spacingSm text-4xl md:m-spacingMd lg:m-spacingLg"
             onClick={onClose}
           >
             <IoMdCloseCircle />
