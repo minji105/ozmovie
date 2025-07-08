@@ -3,7 +3,11 @@ import { FaUserCircle } from 'react-icons/fa';
 import { useAuth } from '@/contexts/AuthContext';
 import useLogout from '@/hooks/auth/useLogout';
 
-export default function UserIcon() {
+interface UserIconProps {
+  setInputDebounce: (value: string) => void;
+}
+
+export default function UserIcon({ setInputDebounce }: UserIconProps) {
   const { user } = useAuth();
   const userIcon = user?.user_metadata.avatar_url;
 
@@ -22,7 +26,9 @@ export default function UserIcon() {
       <div className="absolute right-0 top-0 hidden w-max group-hover:block">
         <ul className="mt-10 flex flex-col gap-4 bg-[#000000c1] p-4 text-sm">
           <li className="hover:underline">
-            <Link to="/mypage">마이페이지</Link>
+            <Link to="/mypage" onClick={() => setInputDebounce('')}>
+              마이페이지
+            </Link>
           </li>
           <li className="hover:underline">
             <button onClick={handleLogout}>로그아웃</button>
