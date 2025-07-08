@@ -2,18 +2,21 @@ import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { IoSearchSharp } from 'react-icons/io5';
 import useScroll from '@/hooks/useScroll';
-import useSearchRouting from '@/hooks/useSearchRouting';
 import { useAuth } from '@/contexts/AuthContext';
 import UserIcon from '@/components/UserIcon';
 
-export default function NavBar() {
+interface NavBarProps {
+  inputDebounce: string;
+  setInputDebounce: (value: string) => void;
+}
+
+export default function NavBar({ inputDebounce, setInputDebounce }: NavBarProps) {
   const [isInputVisible, setIsInputVisible] = useState<boolean>(false);
   const location = useLocation();
   const inputRef = useRef<HTMLInputElement>(null);
 
   const { user } = useAuth();
 
-  const { inputDebounce, setInputDebounce } = useSearchRouting();
   const isScrolled = useScroll();
 
   useEffect(() => {
@@ -52,7 +55,7 @@ export default function NavBar() {
         </div>
 
         {user ? (
-          <UserIcon />
+          <UserIcon setInputDebounce={setInputDebounce} />
         ) : (
           <Link to="/login">
             <button>로그인</button>
