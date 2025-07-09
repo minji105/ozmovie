@@ -50,7 +50,7 @@ export default function SliderSection({ data }: SliderSectionProps) {
       <button
         className="slider-button left-0 rounded-r-sm"
         onClick={handlePrev}
-        style={{ opacity: currentPage === 0 ? '0' : '1' }}
+        style={{ display: currentPage === 0 ? 'none' : 'block' }}
       >
         &lt;
       </button>
@@ -58,7 +58,7 @@ export default function SliderSection({ data }: SliderSectionProps) {
       <button
         className="slider-button right-0 rounded-l-sm"
         onClick={handleNext}
-        style={{ opacity: currentPage === totalPages - 1 ? '0' : '1' }}
+        style={{ display: currentPage === totalPages - 1 ? 'none' : 'block' }}
       >
         &gt;
       </button>
