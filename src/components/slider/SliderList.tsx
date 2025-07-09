@@ -15,9 +15,9 @@ type SliderListProps = {
 export default function SliderList({ sliders }: SliderListProps) {
   return (
     <>
-      <div className="group mb-5 flex w-full flex-col gap-8 overflow-hidden md:mb-8">
+      <div className="mb-5 flex w-full flex-col gap-8 overflow-hidden md:mb-8">
         {sliders.map((slider, idx) => (
-          <section className="responsive-spacing relative">
+          <section className="responsive-spacing group relative">
             <h3 className="mb-1 text-lg md:mb-2 md:text-xl">{slider.title}</h3>
 
             {!slider.loading && slider.data.length === 0 ? (
