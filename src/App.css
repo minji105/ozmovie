@@ -2,18 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-display: swap;
-  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 400;
-  src: url('/src/assets/fonts/noto-sans-kr-v37-latin-regular.woff2') format('woff2'),
-    url('/src/assets/fonts/noto-sans-kr-v37-latin-regular.woff') format('woff'),
-    url('/src/assets/fonts/noto-sans-kr-v37-latin-regular.ttf') format('truetype');
-  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-
 body {
   background-color: #000;
   color: #fff;
