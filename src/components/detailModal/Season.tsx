@@ -46,7 +46,7 @@ export default function Season({ id, seriesLength }: Props) {
         </select>
       </div>
 
-      {seasonData && !loading && (
+      {seasonData?.episodes && !loading ? (
         <div className="divide-y divide-gray-600">
           {seasonData.episodes?.map((episode, index) => {
             const { overview, runtime } = parseMediaInfo(episode, 'tv', 2);
@@ -54,22 +54,24 @@ export default function Season({ id, seriesLength }: Props) {
             return (
               <div
                 key={episode.id}
-                className="xs:gap-4 flex cursor-pointer flex-col gap-2 py-4 hover:bg-stone-800 md:p-8"
+                className="flex cursor-pointer flex-col gap-2 py-4 hover:bg-stone-800 xs:gap-4 md:p-8"
               >
-                <div className="xs:gap-4 flex items-center gap-2">
+                <div className="flex items-center gap-2 xs:gap-4">
                   <p className="hidden text-xl text-gray-300 sm:block">
                     {index + 1}
                   </p>
-                  <img
-                    src={`${BASE_URL}${episode.still_path}`}
-                    alt={episode.name}
-                    className="w-[35%] sm:w-[25%]"
-                  />
-                  <div className="xs:gap-2 flex w-full flex-col gap-1">
+                  {episode.still_path && (
+                    <img
+                      src={`${BASE_URL}${episode.still_path}`}
+                      alt={episode.name}
+                      className="w-[35%] sm:w-[25%]"
+                    />
+                  )}
+                  <div className="flex w-full flex-col gap-1 xs:gap-2">
                     <p className="text-sm font-semibold sm:text-base">
                       {episode.name}
                     </p>
-                    <div className="xs:text-sm flex justify-between text-xs text-gray-400">
+                    <div className="flex justify-between text-xs text-gray-400 xs:text-sm">
                       <p>{episode.air_date}</p>
                       <p>{runtime}</p>
                     </div>
@@ -83,6 +85,10 @@ export default function Season({ id, seriesLength }: Props) {
               </div>
             );
           })}
+        </div>
+      ) : (
+        <div>
+          <p>회차 정보가 없습니다.</p>
         </div>
       )}
     </section>
