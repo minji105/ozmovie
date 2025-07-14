@@ -44,5 +44,6 @@ export interface MediaListItem {
   id: number;
   media_type: 'tv' | 'movie';
   title: string;
+  name: string;
   poster_path: string | null;
 }
