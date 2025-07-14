@@ -60,11 +60,15 @@ export default function DetailModal({ type, id, onClose }: Props) {
       <div className="relative m-auto max-w-4xl overflow-hidden rounded-md bg-stone-900 pb-10">
         {/* 상단 백드랍 이미지 및 제목, 닫기 버튼 */}
         <div className="relative aspect-[1.2] w-full sm:aspect-[1.8]">
-          <img
-            src={`${BASE_URL_ORIGIN}${data.backdrop_path}`}
-            alt={title}
-            className="h-full w-full object-cover brightness-[90%]"
-          />
+          {data.backdrop_path ? (
+            <img
+              src={`${BASE_URL_ORIGIN}${data.backdrop_path}`}
+              alt={title}
+              className="h-full w-full object-cover brightness-[90%]"
+            />
+          ) : (
+            <div className="h-full w-full bg-stone-600" />
+          )}
           <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-stone-900 to-transparent" />
 
           <div className="responsive-spacing absolute bottom-10 left-0">
