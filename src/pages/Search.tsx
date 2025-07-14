@@ -72,7 +72,13 @@ export default function Search() {
         )}
       </div>
 
-      {type && id && <DetailModal type={type} id={id} onClose={closeModal} />}
+      {type && id && (
+        <DetailModal
+          type={type as 'movie' | 'tv'}
+          id={id}
+          onClose={closeModal}
+        />
+      )}
 
       <div ref={loader} />
     </div>
