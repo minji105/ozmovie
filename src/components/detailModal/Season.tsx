@@ -60,11 +60,13 @@ export default function Season({ id, seriesLength }: Props) {
                   <p className="hidden text-xl text-gray-300 sm:block">
                     {index + 1}
                   </p>
-                  <img
-                    src={`${BASE_URL}${episode.still_path}`}
-                    alt={episode.name}
-                    className="w-[35%] sm:w-[25%]"
-                  />
+                  {episode.still_path && (
+                    <img
+                      src={`${BASE_URL}${episode.still_path}`}
+                      alt={episode.name}
+                      className="w-[35%] sm:w-[25%]"
+                    />
+                  )}
                   <div className="flex w-full flex-col gap-1 xs:gap-2">
                     <p className="text-sm font-semibold sm:text-base">
                       {episode.name}
