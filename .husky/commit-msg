@@ -1,0 +1,11 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+commit_msg_file=$1
+commit_msg=$(cat "$commit_msg_file")
+
+echo "$commit_msg" | grep -Eq "#[0-9]+"
+if [ $? -ne 0 ]; then
+  echo "❌ 커밋 메시지에 이슈 넘버가 없습니다. 예: (#123)"
+  exit 1
+fi
