@@ -40,7 +40,10 @@ export default function Search() {
 
   useEffect(() => {
     if (data?.results) {
-      setResultList(prev => [...prev, ...data.results]);
+      const filterd = data.results.filter(
+        el => el.media_type === 'movie' || el.media_type === 'tv',
+      );
+      setResultList(prev => [...prev, ...filterd]);
 
       if (data.page >= data.total_pages) setIsEnd(true);
     }
@@ -60,8 +63,12 @@ export default function Search() {
         `{keyword}` 검색 결과: {len}개{isEnd ? '' : '+'}
       </p>
       <div className="grid grid-cols-3 gap-4 pt-10 sm:grid-cols-4 sm:pt-16 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
-        {resultList.map((media: MediaListItem) => (
-          <MediaCard item={media} path={`/search?keyword=${keyword}&`} />
+        {resultList.map((media: MediaListItem, index) => (
+          <MediaCard
+            key={index}
+            item={media}
+            path={`/search?keyword=${keyword}&`}
+          />
         ))}
         {loading && (
           <>
@@ -72,7 +79,13 @@ export default function Search() {
         )}
       </div>
 
-      {type && id && <DetailModal type={type} id={id} onClose={closeModal} />}
+      {type && id && (
+        <DetailModal
+          type={type as 'movie' | 'tv'}
+          id={id}
+          onClose={closeModal}
+        />
+      )}
 
       <div ref={loader} />
     </div>

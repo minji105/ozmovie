@@ -7,8 +7,8 @@ export default function Recommendation({ data }: { data: any }) {
         함께 시청된 콘텐츠
       </h2>
       <div className="grid grid-cols-[repeat(3,1fr)] gap-3 sm:grid-cols-[repeat(4,1fr)] sm:gap-4">
-        {data?.results.map((item: any) => (
-          <MediaCard item={item} />
+        {data?.results.map((item: any, index: number) => (
+          <MediaCard key={index} item={item} />
         ))}
       </div>
     </section>

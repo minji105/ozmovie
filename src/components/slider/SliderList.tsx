@@ -16,8 +16,8 @@ export default function SliderList({ sliders }: SliderListProps) {
   return (
     <>
       <div className="mb-5 flex w-full flex-col gap-8 overflow-hidden md:mb-8">
-        {sliders.map((slider, idx) => (
-          <section className="responsive-spacing group relative">
+        {sliders.map((slider, index) => (
+          <section key={index} className="responsive-spacing group relative">
             <h3 className="mb-1 text-lg md:mb-2 md:text-xl">{slider.title}</h3>
 
             {!slider.loading && slider.data.length === 0 ? (
@@ -27,7 +27,7 @@ export default function SliderList({ sliders }: SliderListProps) {
                 </p>
               </div>
             ) : (
-              <SliderSection key={idx} data={slider.data} />
+              <SliderSection key={index} data={slider.data} />
             )}
           </section>
         ))}
