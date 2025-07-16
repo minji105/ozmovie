@@ -33,7 +33,7 @@ export default function Mypage() {
       <div className="m-auto flex w-20 flex-col items-center gap-2 pb-16 pt-20">
         <img
           className="w-full rounded-md"
-          src={user?.user_metadata.avatar_url || 'src/assets/profile.png'}
+          src={user?.user_metadata.avatar_url || '/profile.png'}
           alt="user profile image"
         />
         <p className="text-xl">{user?.user_metadata.name}</p>
