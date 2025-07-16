@@ -8,9 +8,18 @@ type MediaCardProps = {
 };
 
 export default function MediaCard({ item, path }: MediaCardProps) {
+  const query = new URLSearchParams(location.search);
+  const keyword = query.get('keyword');
+
+  const base =
+    path ||
+    (keyword
+      ? `${location.pathname}?keyword=${keyword}&`
+      : `${location.pathname}?`);
+
   return (
     item && (
-      <Link to={`${path ? path : '?'}type=${item.media_type}&id=${item.id}`}>
+      <Link to={`${base}type=${item.media_type}&id=${item.id}`}>
         {item.poster_path ? (
           <img
             className="aspect-[0.7] rounded-sm object-cover"
