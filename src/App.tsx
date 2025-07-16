@@ -5,7 +5,7 @@ import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import Layout from '@/components/Layout';
 import Search from '@/pages/Search';
-import Mypage from './pages/mypage';
+import Mypage from '@/pages/Mypage';
 
 function App() {
   return (
