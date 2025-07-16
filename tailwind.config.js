@@ -12,7 +12,7 @@ export default {
         red: { primary: "#df0000", hover: "#bd0101" },
       },
       backgroundImage: {
-        auth: "url(src/assets/bg.png)",
+        auth: "url(/bg.png)",
       },
       spacing: {
         spacingSm: '20px',
