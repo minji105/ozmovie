@@ -7,8 +7,9 @@
 | :--- | :--- | 
 | test@test.com | Test1234 |
 
-## 🛠️ Stacks
+---
 
+## 🛠️ Stacks
 **Environment** <BR>
 ![](https://img.shields.io/badge/VS_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
 ![](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)
@@ -30,8 +31,50 @@
 **Deployment**  <BR>
 ![](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
-## 📡 사용 API 목록 (TMDB)
+---
 
+## 📺 화면 구성 및 기능
+### 메인 페이지
+![화면 녹화 중 2025-07-17 144254 (1)](https://github.com/user-attachments/assets/376c35f5-06ee-452e-81b1-7dfa154ab2b0)
+
+* 일간 트렌딩 콘텐츠를 일정 간격마다 자동 순환하며, 페이드 인/아웃 애니메이션 효과를 적용합니다.
+* 여러 카테고리의 콘텐츠를 슬라이더 형태로 보여줍니다.
+* 배너의 '상세 정보' 버튼이나 콘텐츠를 클릭하면 상세 모달을 띄웁니다.
+
+### 검색 페이지
+![화면 녹화 중 2025-07-17 145247](https://github.com/user-attachments/assets/92e3c8e0-b1ba-4dee-9e3b-7b57698045f2)
+
+* 검색 결과 개수를 함께 보여줍니다.
+* 스크롤을 내리면 추가 검색 결과를 자동으로 로딩합니다. (무한 스크롤)
+* 검색 결과의 콘텐츠를 클릭하면 상세 모달을 띄웁니다.
+
+### 상세 페이지
+![화면 녹화 중 2025-07-17 150744](https://github.com/user-attachments/assets/250cdaa2-ff65-43c4-be15-a47d11d39f23)
+
+* 콘텐츠의 정보(제목, 개봉 연도, 시즌 정보(TV), 상영 시간(영화), 장르, 태그라인, 줄거리 등)를 보여줍니다.
+* 찜하기 버튼을 눌러 콘텐츠를 찜 목록에 추가/제거할 수 있습니다.
+* 좋아요 버튼을 눌러 콘텐츠에 '좋아요'를 표시하거나 취소할 수 있습니다.
+* TV 프로그램의 경우 각 시즌의 정보를 함께 보여줍니다.
+* 현재 콘텐츠와 비슷한 콘텐츠 목록을 보여주며 클릭 시 해당 콘텐츠의 상세 모달로 이동합니다.
+
+### 로그인/회원가입 페이지
+![화면 녹화 중 2025-07-17 151730](https://github.com/user-attachments/assets/906f1f93-d8e8-4e48-a8a4-5f5d4e69a6e7)
+
+![화면 녹화 중 2025-07-17 154554](https://github.com/user-attachments/assets/8d44d7f9-1c20-45f5-afb3-ce9b35791cb8)
+
+* 입력값에 대한 실시간 유효성 검사를 수행합니다.
+* 구글 및 카카오 계정으로 로그인할 수 있습니다.
+
+### 마이 페이지
+![화면 녹화 중 2025-07-17 155323](https://github.com/user-attachments/assets/01a221d0-ddef-4dce-a945-a4c357299add)
+
+* 사용자의 프로필 이미지와 이름을 표시하며, 프로필 이미지가 없는 경우 기본 이미지를 표시합니다.
+* 사용자가 찜한 콘텐츠 목록과 좋아요를 누른 콘텐츠 목록을 슬라이더 형태로 보여줍니다.
+* 콘텐츠를 클릭하면 상세 모달을 띄웁니다.
+
+---
+
+## 📡 사용 API 목록 (TMDB)
 | 기능 | Method | Endpoint |
 | :-- | :--: | :-- |
 | 인기 영화 가져오기 | GET | `/movie/popular` |
@@ -46,7 +89,6 @@
 ---
 
 ## 🖼️ 이미지 기본 경로
-
 | 용도 | URL |
 |------|-----|
 | 포스터 등 (작은 이미지) | `https://image.tmdb.org/t/p/w500` |
@@ -57,3 +99,8 @@
 export const BASE_URL: string = 'https://image.tmdb.org/t/p/w500';
 export const BASE_URL_ORIGIN: string = 'https://image.tmdb.org/t/p/original';
  ```
+
+---
+
+### 📝 개발 블로그
+[스크롤 이벤트에 throttle 적용시키기](https://velog.io/@minji105/React-%EC%8A%A4%ED%81%AC%EB%A1%A4-%EC%9D%B4%EB%B2%A4%ED%8A%B8%EC%97%90-throttle-%EC%A0%81%EC%9A%A9%EC%8B%9C%ED%82%A4%EA%B8%B0)
