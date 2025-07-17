@@ -102,5 +102,37 @@ export const BASE_URL_ORIGIN: string = 'https://image.tmdb.org/t/p/original';
 
 ---
 
+## 📁 디렉토리 구조
+```
+├── .github/              # GitHub 템플릿 (이슈, PR)
+├── .husky/               # Git hooks 설정
+├── public/               # 정적 에셋 (이미지, 폰트)
+├── src/                  
+│   ├── components/       # 재사용 가능한 UI 컴포넌트
+│   ├── common/           # 범용 컴포넌트
+│   ├── detailModal/      # 상세 정보 모달 관련 컴포넌트
+│   ├── skeletons/        # 로딩 상태 UI 스켈레톤
+│   └── slider/           # 슬라이더 관련 컴포넌트
+│   ├── constants/        # 상수 
+│   ├── contexts/         # React Context 
+│   ├── hooks/            # 커스텀 React Hooks
+│   └── auth/             # 인증 관련 Hooks
+│   ├── lib/              # 라이브러리 헬퍼, 유효성 검사 스키마
+│   ├── pages/            # 라우팅되는 페이지 컴포넌트
+│   ├── utils/            # 유틸리티 함수
+│   ├── App.tsx           
+│   ├── main.tsx          
+│   ├── supabaseClient.ts # Supabase 클라이언트 설정
+│   └── types.ts          # 전역 TypeScript 타입 정의
+├── .eslintrc.json        # ESLint 설정
+├── .gitignore            
+├── package.json          
+├── tailwind.config.js    # Tailwind CSS 설정
+├── tsconfig.json         # TypeScript 설정
+└── vite.config.ts        # Vite 설정
+```
+
+---
+
 ### 📝 개발 블로그
 [스크롤 이벤트에 throttle 적용시키기](https://velog.io/@minji105/React-%EC%8A%A4%ED%81%AC%EB%A1%A4-%EC%9D%B4%EB%B2%A4%ED%8A%B8%EC%97%90-throttle-%EC%A0%81%EC%9A%A9%EC%8B%9C%ED%82%A4%EA%B8%B0)
