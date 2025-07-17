@@ -1,4 +1,5 @@
 # OZMOVIE
+TMDB API를 활용하여 만든 영화 및 TV 프로그램 OTT 웹사이트입니다.
 >배포 링크: https://ozmovie.vercel.app/ <BR>
 제작 기간: 2025.06.24 ~ 07.15 (리팩토링 진행 중)
 
