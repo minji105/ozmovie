@@ -74,13 +74,13 @@ TMDB API를 활용하여 만든 영화 및 TV 프로그램 OTT 웹사이트입�
 * 콘텐츠를 클릭하면 상세 모달을 띄웁니다.
 
 ### 모바일 뷰
-<img width="210" alt="KakaoTalk_20250717_213536111" src="https://github.com/user-attachments/assets/43ac6b54-3f2e-47b1-b489-20aa4c6199e1" />
-<img width="210" alt="KakaoTalk_20250717_213534855" src="https://github.com/user-attachments/assets/56068b3f-458b-4c78-9c16-f2127f013947" />
-<img width="210" alt="KakaoTalk_20250717_213531269" src="https://github.com/user-attachments/assets/34cc524c-c851-4e50-85e9-7d6e30a49e08" />
-<img width="210" alt="KakaoTalk_20250717_233534275" src="https://github.com/user-attachments/assets/e8ef0877-807c-4ecb-a588-b540149ecb15" />
-<img width="210" alt="KakaoTalk_20250717_213534051" src="https://github.com/user-attachments/assets/d422787d-6531-4989-9d69-6dc3d6e089b6" />
-<img width="210" alt="KakaoTalk_20250717_233533513" src="https://github.com/user-attachments/assets/d1a3ed9c-f10c-4275-8466-dfd78c218690" />
-<img width="210" alt="KakaoTalk_20250707_191018562" src="https://github.com/user-attachments/assets/0a5627da-8371-4775-a9d8-2ed0dd1cc85c" />
+<img width="200" alt="KakaoTalk_20250717_213536111" src="https://github.com/user-attachments/assets/43ac6b54-3f2e-47b1-b489-20aa4c6199e1" />
+<img width="200" alt="KakaoTalk_20250717_213534855" src="https://github.com/user-attachments/assets/56068b3f-458b-4c78-9c16-f2127f013947" />
+<img width="200" alt="KakaoTalk_20250717_213531269" src="https://github.com/user-attachments/assets/34cc524c-c851-4e50-85e9-7d6e30a49e08" />
+<img width="200" alt="KakaoTalk_20250717_233534275" src="https://github.com/user-attachments/assets/e8ef0877-807c-4ecb-a588-b540149ecb15" />
+<img width="200" alt="KakaoTalk_20250717_213534051" src="https://github.com/user-attachments/assets/d422787d-6531-4989-9d69-6dc3d6e089b6" />
+<img width="200" alt="KakaoTalk_20250717_233533513" src="https://github.com/user-attachments/assets/d1a3ed9c-f10c-4275-8466-dfd78c218690" />
+<img width="200" alt="KakaoTalk_20250707_191018562" src="https://github.com/user-attachments/assets/0a5627da-8371-4775-a9d8-2ed0dd1cc85c" />
 
 
 
