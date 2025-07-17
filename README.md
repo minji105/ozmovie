@@ -104,8 +104,6 @@ export const BASE_URL_ORIGIN: string = 'https://image.tmdb.org/t/p/original';
 
 ## 📁 디렉토리 구조
 ```
-├── .github/              # GitHub 템플릿 (이슈, PR)
-├── .husky/               # Git hooks 설정
 ├── public/               # 정적 에셋 (이미지, 폰트)
 ├── src/                  
 │   ├── components/       # 재사용 가능한 UI 컴포넌트
@@ -125,7 +123,6 @@ export const BASE_URL_ORIGIN: string = 'https://image.tmdb.org/t/p/original';
 │   ├── supabaseClient.ts # Supabase 클라이언트 설정
 │   └── types.ts          # 전역 TypeScript 타입 정의
 ├── .eslintrc.json        # ESLint 설정
-├── .gitignore            
 ├── package.json          
 ├── tailwind.config.js    # Tailwind CSS 설정
 ├── tsconfig.json         # TypeScript 설정
